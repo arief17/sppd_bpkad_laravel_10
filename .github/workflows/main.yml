@@ -22,7 +22,6 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd public_html/sppd_bpkad
-            rm -f .git/index.lock
             git fetch origin main
             git reset --hard origin/main
             php composer.phar install
