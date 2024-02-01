@@ -22,7 +22,10 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd public_html/sppd_bpkad
-            git init
+            if [ ! -d ".git" ]; then
+              git init
+              git remote add origin https://github.com/Hikuroshi/sppd_bpkad_laravel_10
+            fi
             git fetch origin main
             git reset --hard origin/main
             php composer.phar install
