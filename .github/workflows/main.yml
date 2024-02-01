@@ -23,7 +23,7 @@ jobs:
           script: |
             cd public_html/sppd_bpkad
             if [ ! -d ".git" ]; then
-              git init branch main
+              git init -b main
               git remote add origin https://github.com/Hikuroshi/sppd_bpkad_laravel_10
             fi
             git fetch origin main
