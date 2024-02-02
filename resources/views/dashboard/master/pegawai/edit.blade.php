@@ -195,19 +195,6 @@
 			$('#golongan_id').attr('required', 'required');
 			$('#nip').attr('required', 'required');
 
-		} else if (jabatan.includes('kepala seksi')) {
-			$('#seksi_hide').show();
-			$('#bidang_hide').hide();
-			$('#pangkat_hide').show();
-			$('#golongan_hide').show();
-			$('#nip_hide').show();
-
-			$('#seksi_id').attr('required', 'required');
-			$('#bidang_id').removeAttr('required').val('');
-			$('#pangkat_id').attr('required', 'required');
-			$('#golongan_id').attr('required', 'required');
-			$('#nip').attr('required', 'required');
-
 		} else if (jabatan.includes('non asn')) {
 			$('#seksi_hide').show();
 			$('#bidang_hide').show();
