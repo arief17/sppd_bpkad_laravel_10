@@ -33,9 +33,12 @@ class PerdinPdfController extends Controller
     {
         App::setLocale('id');
         $data_perdin = DataPerdin::where('slug', $slug)->first();
+
         $ttd_kepala = TandaTangan::whereHas('pegawai.jabatan', function ($query) {
-            $query->where('nama', 'like', '%Kepala Dinas%');
+            $query->where('nama', 'like', '%Kepala Badan%');
         })->first();
+
+        $ttd_kepala = $ttd_kepala ?? 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
 
         $imgLogo = base64_encode(file_get_contents(public_path('assets/img/logo-banten2.png')));
 
@@ -54,8 +57,10 @@ class PerdinPdfController extends Controller
         App::setLocale('id');
         $data_perdin = DataPerdin::where('slug', $slug)->first();
         $ttd_kepala = TandaTangan::whereHas('pegawai.jabatan', function ($query) {
-            $query->where('nama', 'like', '%Kepala Dinas%');
+            $query->where('nama', 'like', '%Kepala Badan%');
         })->first();
+
+        $ttd_kepala = $ttd_kepala ?? 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
 
         $imgLogo = base64_encode(file_get_contents(public_path('assets/img/logo-banten2.png')));
 
@@ -91,8 +96,10 @@ class PerdinPdfController extends Controller
         $kwitansi_perdin = KwitansiPerdin::where('id', $id)->first();
         $bendahara = Bendahara::latest()->first();
         $ttd_kepala = TandaTangan::whereHas('pegawai.jabatan', function ($query) {
-            $query->where('nama', 'like', '%Kepala Dinas%');
+            $query->where('nama', 'like', '%Kepala Badan%');
         })->first();
+
+        $ttd_kepala = $ttd_kepala ?? 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
 
         $total_uang = 0;
         foreach ($kwitansi_perdin->pegawais as $pegawai) {

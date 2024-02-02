@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->unsignedBigInteger('pegawai_id');
             $table->boolean('status');
-            $table->string('file_ttd');
+            $table->string('file_ttd')->nullable();
             $table->unsignedBigInteger('author_id');
             $table->timestamps();
             $table->softDeletes();

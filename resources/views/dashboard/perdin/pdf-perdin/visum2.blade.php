@@ -5,7 +5,7 @@
 			margin: 0;
 			padding: 0;
 		}
-		
+
 		.gap-t td {
 			padding: 0.5px;
 		}
@@ -40,8 +40,8 @@
 				</table>
 				<div style="text-align: center;">
 					<p style="margin-top: 10px;" style="text-transform: uppercase; font-weight: bold;">Kepala Dinas</p>
-					
-					<img src="data:image/png;base64,{{ $ttd_kepala->fileTtdEncoded ?? '' }}" alt="{{ $ttd_kepala->nama ?? '' }}" height="60">
+
+					<img src="data:image/png;base64,{{ $ttd_kepala->fileTtdEncoded ?? $ttd_kepala }}" alt="{{ $ttd_kepala->nama ?? '' }}" height="60">
 					<p style="text-decoration: underline; font-weight: bold;">{{ $ttd_kepala->pegawai->nama ?? '' }}</p>
 					<p>NIP.{{ $ttd_kepala->pegawai->nip ?? '' }}</p>
 				</div>
@@ -101,7 +101,7 @@
 				</table>
 			</td>
 		</tr>
-		
+
 		<tr>
 			<td style="border: 1px solid black; width: 50%;">
 				<table style="width: 100%;">
@@ -211,7 +211,7 @@
 				</table>
 			</td>
 		</tr>
-		
+
 		<tr>
 			<td style="border: 1px solid black; width: 50%;">
 				<table style="width: 100%;">
@@ -266,7 +266,7 @@
 				</table>
 			</td>
 		</tr>
-		
+
 		<tr>
 			<td style="border: 1px solid black; width: 50%;">
 				<table style="width: 100%;">
@@ -282,8 +282,8 @@
 				</table>
 				<div style="text-align: center;">
 					<p style="margin-top: 10px;" style="text-transform: uppercase; font-weight: bold;">Kepala Dinas</p>
-					
-					<img src="data:image/png;base64,{{ $ttd_kepala->fileTtdEncoded ?? '' }}" alt="{{ $ttd_kepala->nama ?? '' }}" height="60">
+
+					<img src="data:image/png;base64,{{ $ttd_kepala->fileTtdEncoded ?? $ttd_kepala }}" alt="{{ $ttd_kepala->nama ?? '' }}" height="60">
 					<p style="text-decoration: underline; font-weight: bold;">{{ $ttd_kepala->pegawai->nama ?? '' }}</p>
 					<p>NIP.{{ $ttd_kepala->pegawai->nip ?? '' }}</p>
 				</div>
@@ -292,8 +292,8 @@
 				<p style="padding-left: 20px;">Telah diperiksa dengan keterangan bahwa perjalan tersebut atas perintahnya dan semata mata untuk kepentingan jabatan dalam waktu sesingkat-singkatnya</p>
 				<div style="text-align: center;">
 					<p style="margin-top: 10px;" style="text-transform: uppercase; font-weight: bold;">Kepala Dinas</p>
-					
-					<img src="data:image/png;base64,{{ $ttd_kepala->fileTtdEncoded ?? '' }}" alt="{{ $ttd_kepala->nama ?? '' }}" height="60">
+
+					<img src="data:image/png;base64,{{ $ttd_kepala->fileTtdEncoded ?? $ttd_kepala }}" alt="{{ $ttd_kepala->nama ?? '' }}" height="60">
 					<p style="text-decoration: underline; font-weight: bold;">{{ $ttd_kepala->pegawai->nama ?? '' }}</p>
 					<p>NIP.{{ $ttd_kepala->pegawai->nip ?? '' }}</p>
 				</div>

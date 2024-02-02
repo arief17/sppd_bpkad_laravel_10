@@ -40,18 +40,20 @@ class TandaTanganController extends Controller
         $validatedData = $request->validate([
             'pegawai_id' => 'required',
             'status' => '',
-            'file_ttd' => 'required|image|max:10000'
+            'file_ttd' => 'image|max:10000'
         ]);
 
         if (!$request->status) {
             $validatedData['status'] = 0;
         }
         $pegawai = Pegawai::where('id', $request->pegawai_id)->first();
-        
-        $validatedData['file_ttd'] = $request->file('file_ttd')->store('file-ttd');
+
+        if ($request->file('file_ttd')) {
+            $validatedData['file_ttd'] = $request->file('file_ttd')->store('file-ttd');
+        }
         $validatedData['slug'] = SlugService::createSlug(TandaTangan::class, 'slug', $pegawai->nama . " " . $pegawai->jabatan->nama);
         $validatedData['author_id'] = auth()->user()->id;
-        
+
         TandaTangan::create($validatedData);
         return redirect()->route('tanda-tangan.index')->with('success', 'Tanda Tangan berhasil ditambahkan!');
     }
@@ -100,12 +102,12 @@ class TandaTanganController extends Controller
             }
             $validatedData['file_ttd'] = $request->file('file_ttd')->store('file-ttd');
         }
-        
+
         $pegawai = Pegawai::where('id', $request->pegawai_id)->first();
-        
+
         $validatedData['slug'] = SlugService::createSlug(TandaTangan::class, 'slug', $pegawai->nama . " " . $pegawai->jabatan->nama);
         $validatedData['author_id'] = auth()->user()->id;
-        
+
         TandaTangan::where('id', $tandaTangan->id)->update($validatedData);
         return redirect()->route('tanda-tangan.index')->with('success', 'Tanda Tangan berhasil diperbarui!');
     }

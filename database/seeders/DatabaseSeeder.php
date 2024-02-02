@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('admin'),
             'level_admin_id' => 2,
         ]);
-        
+
         Bidang::create([
             'nama' => 'BIDANG BINA MARGA',
             'slug' => 'bidang-bina-marga',
@@ -117,7 +117,7 @@ class DatabaseSeeder extends Seeder
             'jenis_perdin_id' => 2,
             'author_id' => 1,
         ]);
-        
+
         Golongan::create([
             'nama' => 'Eselon I',
             'slug' => 'eselon-i',
@@ -417,13 +417,6 @@ class DatabaseSeeder extends Seeder
         Lama::create([
             'lama_hari' => 3,
             'author_id' => 1,
-        ]);
-
-        User::where('id', 1)->update([
-            'bidang_id' => 1
-        ]);
-        User::where('id', 2)->update([
-            'bidang_id' => 2
         ]);
     }
 }
