@@ -28,6 +28,7 @@ jobs:
             fi
             git fetch origin main
             git reset --hard origin/main
+            git clean -f -d
             php composer.phar install --ignore-platform-reqs
             chmod -R 777 storage bootstrap/cache
             php -r "file_exists('.env') || copy('.env.example', '.env');"
