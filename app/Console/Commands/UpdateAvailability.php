@@ -39,7 +39,7 @@ class UpdateAvailability extends Command
             }
         }
 
-        $data_perdin_proses = DataPerdin::whereDate('tgl_kembali', '>', $today)->get();
+        $data_perdin_proses = DataPerdin::whereDate('tgl_kembali', '=>', $today)->get();
 
         $pegawai_selesai_ids = $data_perdin_selesai->pluck('pegawai_diperintah.id')->merge($data_perdin_selesai->pluck('pegawai_mengikuti.*.id'))->unique();
 
