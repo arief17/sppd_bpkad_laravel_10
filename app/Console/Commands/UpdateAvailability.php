@@ -12,7 +12,7 @@ class UpdateAvailability extends Command
     *
     * @var string
     */
-    protected $signature = 'app:update-availability';
+    protected $signature = 'availability:update';
 
     /**
     * The console command description.
@@ -26,8 +26,8 @@ class UpdateAvailability extends Command
     */
     public function handle()
     {
-        $today = now();
-        $data_perdin = DataPerdin::where('tgl_kembali', '<=', $today)->get();
+        $today = now('Asia/Jakarta')->toDateString();
+        $data_perdin = DataPerdin::whereDate('tgl_kembali', '<=', $today)->get();
 
         if ($data_perdin->isNotEmpty()) {
             foreach ($data_perdin as $perdin) {
@@ -37,11 +37,11 @@ class UpdateAvailability extends Command
                     $pegawai->ketentuan->update(['tersedia' => 1]);
                 }
             }
+        }
 
-            $this->info('Ketersediaan pegawai telah diperbarui');
-        } else {
-            $data_perdin = DataPerdin::where('tgl_kembali', '>=', $today)->get();
+        $data_perdin = DataPerdin::whereDate('tgl_kembali', '>=', $today)->get();
 
+        if ($data_perdin->isNotEmpty()) {
             foreach ($data_perdin as $perdin) {
                 $perdin->pegawai_diperintah->ketentuan->update(['tersedia' => 0]);
 
@@ -49,8 +49,8 @@ class UpdateAvailability extends Command
                     $pegawai->ketentuan->update(['tersedia' => 0]);
                 }
             }
-
-            $this->info('Tidak ada perjalanan dinas yang perlu diperbarui');
         }
+
+        $this->info('Ketersediaan pegawai telah diperbarui');
     }
 }
