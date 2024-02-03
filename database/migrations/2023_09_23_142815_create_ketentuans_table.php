@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->integer('jumlah_perdin')->default(0);
             $table->integer('max_perdin')->default(8);
+            $table->boolean('tersedia')->default(1);
             $table->unsignedBigInteger('author_id');
             $table->timestamps();
             $table->softDeletes();

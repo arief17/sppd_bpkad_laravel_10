@@ -20,6 +20,7 @@
 								<th class="border-bottom-0">Nama</th>
 								<th class="border-bottom-0">Jumlah Perdin</th>
 								<th class="border-bottom-0">Maksimal Perdin</th>
+								<th class="border-bottom-0">Status</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -37,6 +38,7 @@
 								<td>{{ $ketentuan->pegawai->nama }}</td>
 								<td>{{ $ketentuan->jumlah_perdin }}</td>
 								<td>{{ $ketentuan->max_perdin }}</td>
+								<td>{{ $ketentuan->tersedia ? 'Tersedia' : 'Sedang Perjalanan Dinas' }}</td>
 							</tr>
 							@endforeach
 						</tbody>

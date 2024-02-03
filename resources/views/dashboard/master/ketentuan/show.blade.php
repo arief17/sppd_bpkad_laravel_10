@@ -26,6 +26,10 @@
 							<th style="white-space: nowrap; width: 1%;">Maksimal Perdin:</th>
 							<td>{{ $ketentuan->max_perdin }}</td>
 						</tr>
+						<tr>
+							<th style="white-space: nowrap; width: 1%;">Status:</th>
+							<td>{{ $ketentuan->tersedia ? 'Tersedia' : 'Sedang Perjalanan Dinas' }}</td>
+						</tr>
 					</table>
 				</div>
 			</div>
