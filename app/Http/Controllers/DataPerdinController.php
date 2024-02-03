@@ -19,6 +19,7 @@ use App\Models\UangTransport;
 use App\Models\Wilayah;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 
 class DataPerdinController extends Controller
@@ -227,6 +228,7 @@ class DataPerdinController extends Controller
 
             Ketentuan::whereIn('id', $allKetentuanIds)->increment('jumlah_perdin');
 
+            Artisan::call('update:availability');
             return redirect()->route('data-perdin.index', 'baru')->with('success', 'Data Perdin berhasil ditambahkan!');
         }, 2);
     }
@@ -369,6 +371,7 @@ class DataPerdinController extends Controller
 
             Ketentuan::whereIn('id', $allKetentuanIds)->increment('jumlah_perdin');
 
+            Artisan::call('update:availability');
             return redirect()->route('data-perdin.index', 'baru')->with('success', 'Data Perdin berhasil ditambahkan!');
         }, 2);
     }

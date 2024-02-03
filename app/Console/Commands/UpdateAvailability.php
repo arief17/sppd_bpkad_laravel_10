@@ -27,7 +27,7 @@ class UpdateAvailability extends Command
     public function handle()
     {
         $today = now('Asia/Jakarta')->toDateString();
-        $data_perdin = DataPerdin::whereDate('tgl_kembali', '<=', $today)->get();
+        $data_perdin = DataPerdin::whereDate('tgl_kembali', '<', $today)->get();
 
         if ($data_perdin->isNotEmpty()) {
             foreach ($data_perdin as $perdin) {
@@ -39,7 +39,7 @@ class UpdateAvailability extends Command
             }
         }
 
-        $data_perdin = DataPerdin::whereDate('tgl_kembali', '>=', $today)->get();
+        $data_perdin = DataPerdin::whereDate('tgl_kembali', '>', $today)->get();
 
         if ($data_perdin->isNotEmpty()) {
             foreach ($data_perdin as $perdin) {
