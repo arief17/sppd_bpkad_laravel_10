@@ -1,2 +1,2 @@
 #!/bin/sh
-php artisan schedule:run >> /dev/null 2>&1
+php artisan availability:update
