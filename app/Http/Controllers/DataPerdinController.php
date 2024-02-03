@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\AlatAngkut;
-use App\Models\Bidang;
 use App\Models\DataPerdin;
 use App\Models\JenisPerdin;
 use App\Models\Ketentuan;
@@ -16,7 +15,6 @@ use App\Models\TandaTangan;
 use App\Models\UangHarian;
 use App\Models\UangPenginapan;
 use App\Models\UangTransport;
-use App\Models\Wilayah;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
