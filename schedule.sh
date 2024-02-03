@@ -1,0 +1,1 @@
+#!/bin/sh cd /home/u12345678/domains/cvdelapantiga.info/public_html/sppd_bpkad /usr/bin/php artisan availability:update > /dev/null 2>&1
