@@ -13,11 +13,11 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table border-top-0 table-bordered border-bottom" id="responsive-datatable">
+					<table class="table border-top-0 table-bordered text-nowrap border-bottom" id="responsive-datatable">
 						<thead>
-							<tr>
+							<tr class="text-center">
 								<th class="border-bottom-0" style="width: 1%">No</th>
-								<th class="border-bottom-0 text-center" style="width: 12%">Aksi</th>
+								<th class="border-bottom-0" style="width: 1%">Aksi</th>
 								<th class="border-bottom-0">Keterangan</th>
 								<th class="border-bottom-0">Wilayah</th>
 								{{-- <th class="border-bottom-0">Eselon I</th>
@@ -34,7 +34,7 @@
 						<tbody>
 							@foreach ($uang_harians as $uang_harian)
 							<tr>
-								<td>{{ $loop->iteration }}</td>
+								<td class="text-center">{{ $loop->iteration }}</td>
 								<td>
 									<a class="btn btn-primary btn-sm" href="{{ route('uang-harian.show', $uang_harian->slug) }}">
 										<i class="fas fa-eye"></i>

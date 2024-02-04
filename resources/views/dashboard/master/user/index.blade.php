@@ -15,21 +15,21 @@
 				<div class="table-responsive">
 					<table class="table border-top-0 table-bordered border-bottom" id="responsive-datatable">
 						<thead>
-							<tr>
+							<tr class="text-center">
 								<th class="border-bottom-0" style="width: 1%">No</th>
-								<th class="border-bottom-0 text-center" style="width: 12%">Aksi</th>
+								<th class="border-bottom-0" style="width: 1%">Aksi</th>
 								<th class="border-bottom-0">Username</th>
 								<th class="border-bottom-0">Level Admin</th>
 								<th class="border-bottom-0">Bidang</th>
 								<th class="border-bottom-0">Jabatan</th>
-								<th class="border-bottom-0 text-center">Last Login</th>
+								<th class="border-bottom-0">Last Login</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach ($users as $user)
 							<tr>
-								<td>{{ $loop->iteration }}</td>
-								<td>
+								<td class="text-center">{{ $loop->iteration }}</td>
+								<td class="text-nowrap">
 									<a class="btn btn-primary btn-sm" href="{{ route('user.show', $user->username) }}">
 										<i class="fas fa-eye"></i>
 									</a>

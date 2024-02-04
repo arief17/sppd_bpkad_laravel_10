@@ -16,14 +16,14 @@
 						<thead>
 							<tr class="text-center">
 								<th class="border-bottom-0" style="width: 1%">No</th>
-								<th class="border-bottom-0" style="width: 6%">Aksi</th>
+								<th class="border-bottom-0" style="width: 1%">Aksi</th>
 								<th class="border-bottom-0">Nama Golongan</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach ($golongans as $golongan)
 							<tr>
-								<td>{{ $loop->iteration }}</td>
+								<td class="text-center">{{ $loop->iteration }}</td>
 								<td>
 									<a class="btn btn-primary btn-sm" href="{{ route('golongan.show', $golongan->slug) }}">
 										<i class="fas fa-eye"></i>

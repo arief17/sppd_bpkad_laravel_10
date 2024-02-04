@@ -15,9 +15,9 @@
 				<div class="table-responsive">
 					<table class="table border-top-0 table-bordered text-nowrap border-bottom" id="responsive-datatable">
 						<thead>
-							<tr>
+							<tr class="text-center">
 								<th class="border-bottom-0" style="width: 1%">No</th>
-								<th class="border-bottom-0 text-center" style="width: 1%">Aksi</th>
+								<th class="border-bottom-0" style="width: 1%">Aksi</th>
 								<th class="border-bottom-0">Wilayah</th>
 								<th class="border-bottom-0">Alat Angkut</th>
 								{{-- <th class="border-bottom-0">Harga Tiket</th>
@@ -35,7 +35,7 @@
 						<tbody>
 							@foreach ($uang_transports as $uang_transport)
 							<tr>
-								<td>{{ $loop->iteration }}</td>
+								<td class="text-center">{{ $loop->iteration }}</td>
 								<td>
 									<a class="btn btn-primary btn-sm" href="{{ route('uang-transport.show', $uang_transport->slug) }}">
 										<i class="fas fa-eye"></i>

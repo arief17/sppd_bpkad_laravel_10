@@ -42,7 +42,7 @@
 									</form>
 								</td>
 								<td>{{ $bidang->nama }}</td>
-								<td class="text-center">{{ $bidang->jenis }}</td>
+								<td>{{ $bidang->jenis }}</td>
 							</tr>
 							@endforeach
 						</tbody>

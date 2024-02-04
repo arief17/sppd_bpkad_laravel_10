@@ -15,17 +15,17 @@
 				<div class="table-responsive">
 					<table class="table border-top-0 table-bordered border-bottom" id="responsive-datatable">
 						<thead>
-							<tr>
+							<tr class="text-center">
 								<th class="border-bottom-0" style="width: 1%">No</th>
-								<th class="border-bottom-0 text-center" style="width: 12%">Aksi</th>
+								<th class="border-bottom-0" style="width: 1%">Aksi</th>
 								<th class="border-bottom-0">Nama</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach ($pangkats as $pangkat)
 							<tr>
-								<td>{{ $loop->iteration }}</td>
-								<td>
+								<td class="text-center">{{ $loop->iteration }}</td>
+								<td class="text-nowrap">
 									<a class="btn btn-primary btn-sm" href="{{ route('pangkat.show', $pangkat->slug) }}">
 										<i class="fas fa-eye"></i>
 									</a>

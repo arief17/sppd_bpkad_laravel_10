@@ -12,24 +12,21 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table border-top-0 table-bordered text-nowrap border-bottom" id="responsive-datatable">
+					<table class="table border-top-0 table-bordered border-bottom" id="responsive-datatable">
 						<thead>
-							<tr>
+							<tr class="text-center">
 								<th class="border-bottom-0" style="width: 1%">No</th>
+								<th class="border-bottom-0" style="width: 1%">Aksi</th>
 								<th class="border-bottom-0">Petugas</th>
 								<th class="border-bottom-0">Maksud</th>
 								<th class="border-bottom-0">Tanggal Berangkat</th>
-								<th class="border-bottom-0" style="width: 1%">Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach ($kwitansi_perdins as $kwitansi_perdin)
 							<tr>
-								<td>{{ $loop->iteration }}</td>
-								<td>{{ $kwitansi_perdin->data_perdin->pegawai_diperintah->nama }}</td>
-								<td>{{ $kwitansi_perdin->data_perdin->maksud }}</td>
-								<td>{{ $kwitansi_perdin->data_perdin->tgl_berangkat }}</td>
-								<td>
+								<td class="text-center">{{ $loop->iteration }}</td>
+								<td class="text-nowrap">
 									@if ($kwitansi_perdin->data_perdin->status->kwitansi)
 									<a class="modal-effect btn btn-secondary btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#lap-bendahara-{{ $kwitansi_perdin->id }}">
 										Laporan Bendahara
@@ -38,6 +35,9 @@
 									<button class="not-bayar btn btn-danger btn-sm">Laporan Bendahara</button>
 									@endif
 								</td>
+								<td>{{ $kwitansi_perdin->data_perdin->pegawai_diperintah->nama }}</td>
+								<td>{{ $kwitansi_perdin->data_perdin->maksud }}</td>
+								<td>{{ $kwitansi_perdin->data_perdin->tgl_berangkat }}</td>
 								@if ($kwitansi_perdin->data_perdin->status->kwitansi)
 								@include('dashboard.perdin.status-perdin.lap_bendahara')
 								@endif

@@ -15,7 +15,7 @@
 				<div class="table-responsive">
 					<table class="table border-top-0 table-bordered text-nowrap border-bottom" id="responsive-datatable">
 						<thead>
-							<tr>
+							<tr class="text-center">
 								<th class="border-bottom-0" style="width: 1%">No</th>
 								<th class="border-bottom-0" style="width: 1%">Aksi</th>
 								<th class="border-bottom-0">Keterangan</th>
@@ -34,22 +34,19 @@
 						<tbody>
 							@foreach ($uang_penginapans as $uang_penginapan)
 							<tr>
-								<td>{{ $loop->iteration }}</td>
+								<td class="text-center">{{ $loop->iteration }}</td>
 								<td>
 									<a class="btn btn-primary btn-sm" href="{{ route('uang-penginapan.show', $uang_penginapan->slug) }}">
-										<i class="fas fa-folder"></i>
-										View
+										<i class="fas fa-eye"></i>
 									</a>
 									<a class="btn btn-info btn-sm" href="{{ route('uang-penginapan.edit', $uang_penginapan->slug) }}">
 										<i class="fas fa-pencil-alt"></i>
-										Edit
 									</a>
 									<form action="{{ route('uang-penginapan.destroy', $uang_penginapan->slug) }}" method="post" class="d-inline">
 										@method('delete')
 										@csrf
 										<button type="button" class="btn btn-danger btn-sm" id='deleteData' data-title="{{ $uang_penginapan->nama }}">
 											<i class="fas fa-trash"></i>
-											Delete
 										</button>
 									</form>
 								</td>

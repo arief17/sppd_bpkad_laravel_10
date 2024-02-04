@@ -13,26 +13,21 @@
 			<div class="card-body">
 				<div class="table-responsive">
 					<table class="table border-top-0 table-bordered border-bottom" id="responsive-datatable">
-						<thead class="text-nowrap">
-							<tr>
+						<thead>
+							<tr class="text-center">
 								<th class="border-bottom-0" style="width: 1%">No</th>
+								<th class="border-bottom-0" style="width: 1%">Aksi</th>
 								<th class="border-bottom-0">Surat Dari</th>
 								<th class="border-bottom-0">Tanggal Surat</th>
 								<th class="border-bottom-0">Maksud</th>
 								<th class="border-bottom-0">Petugas</th>
 								<th class="border-bottom-0">Tanggal Berangkat</th>
-								<th class="border-bottom-0" style="width: 1%">Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach ($laporan_perdins as $laporan_perdin)
-							<tr>
+							<tr class="text-center">
 								<td>{{ $loop->iteration }}</td>
-								<td>{{ $laporan_perdin->data_perdin->surat_dari ?? '' }}</td>
-								<td>{{ $laporan_perdin->data_perdin->tgl_surat ?? '' }}</td>
-								<td>{{ $laporan_perdin->data_perdin->maksud }}</td>
-								<td>{{ $laporan_perdin->data_perdin->pegawai_diperintah->nama }}</td>
-								<td>{{ $laporan_perdin->data_perdin->tgl_berangkat }}</td>
 								<td class="text-nowrap">
 									@if ($laporan_perdin->data_perdin->status->lap)
 										@if ($laporan_perdin->file_laporan)
@@ -50,8 +45,12 @@
 										<button class="not-laporan btn btn-danger btn-sm">Laporan yang diinput</button>
 										<button class="not-laporan btn btn-danger btn-sm">Laporan perdin</button>
 									@endif
-
 								</td>
+								<td>{{ $laporan_perdin->data_perdin->surat_dari ?? '' }}</td>
+								<td>{{ $laporan_perdin->data_perdin->tgl_surat ?? '' }}</td>
+								<td>{{ $laporan_perdin->data_perdin->maksud }}</td>
+								<td>{{ $laporan_perdin->data_perdin->pegawai_diperintah->nama }}</td>
+								<td>{{ $laporan_perdin->data_perdin->tgl_berangkat }}</td>
 
 								@if ($laporan_perdin->data_perdin->status->lap)
 									@include('dashboard.perdin.status-perdin.lap_cetak')

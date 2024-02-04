@@ -17,7 +17,7 @@
 				<div class="table-responsive">
 					<table class="table border-top-0 table-bordered text-nowrap border-bottom" id="responsive-datatable">
 						<thead>
-							<tr>
+							<tr class="text-center">
 								<th class="border-bottom-0" style="width: 1%">No</th>
 								<th class="border-bottom-0" style="width: 1%">Aksi</th>
 								<th class="border-bottom-0">Surat Dari</th>
@@ -35,7 +35,7 @@
 						<tbody>
 							@foreach ($data_perdins as $data_perdin)
 							<tr>
-								<td>{{ $loop->iteration }}</td>
+								<td class="text-center">{{ $loop->iteration }}</td>
 								<td>
 									<div class="btn-group" role="group">
 										@can('isApproval')

@@ -14,8 +14,8 @@
 			<div class="card-body">
 				<div class="table-responsive">
 					<table class="table border-top-0 table-bordered text-nowrap border-bottom" id="responsive-datatable">
-						<thead class="text-center">
-							<tr>
+						<thead>
+							<tr class="text-center">
 								<th class="border-bottom-0" style="width: 1%">No</th>
 								<th class="border-bottom-0" style="width: 1%">Aksi</th>
 								<th class="border-bottom-0">Nama</th>
@@ -25,7 +25,7 @@
 						<tbody>
 							@foreach ($seksis as $seksi)
 							<tr>
-								<td>{{ $loop->iteration }}</td>
+								<td class="text-center">{{ $loop->iteration }}</td>
 								<td>
 									<a class="btn btn-primary btn-sm" href="{{ route('seksi.show', $seksi->slug) }}">
 										<i class="fas fa-eye"></i>

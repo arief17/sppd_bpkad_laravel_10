@@ -16,7 +16,7 @@
 						<thead>
 							<tr class="text-center">
 								<th class="border-bottom-0" style="width: 1%">No</th>
-								<th class="border-bottom-0" style="width: 5%">Aksi</th>
+								<th class="border-bottom-0" style="width: 1%">Aksi</th>
 								<th class="border-bottom-0">Nama</th>
 								<th class="border-bottom-0">No Rekening</th>
 							</tr>
@@ -24,7 +24,7 @@
 						<tbody>
 							@foreach ($jenis_perdins as $jenis_perdin)
 							<tr>
-								<td>{{ $loop->iteration }}</td>
+								<td class="text-center">{{ $loop->iteration }}</td>
 								<td>
 									<a class="btn btn-primary btn-sm" href="{{ route('jenis-perdin.show', $jenis_perdin->slug) }}">
 										<i class="fas fa-eye"></i>
