@@ -75,7 +75,7 @@
 					<hr style="border-top: 3px solid black" class="my-4">
 
 					<div class="form-group">
-						<label for="tanda_tangan_id" class="form-label">Pejabat yang memberi perintah</label>
+						<label for="tanda_tangan_id" class="form-label">Pejabat yang memberi perintah <span class="text-danger">*</span></label>
 						<select name="tanda_tangan_id" id="tanda_tangan_id" class="form-control form-select select2 @error('tanda_tangan_id') is-invalid @enderror">
 							<option value="">Pilih Pejabat</option>
 							@foreach ($tanda_tangans as $tanda_tangan)
@@ -91,7 +91,7 @@
 						@enderror
 					</div>
 					<div class="form-group">
-						<label for="maksud">Maksud Perjalanan Dinas</label>
+						<label for="maksud">Maksud Perjalanan Dinas <span class="text-danger">*</span></label>
 						<textarea name="maksud" class="form-control @error('maksud') is-invalid @enderror" id="maksud" placeholder="Masukan maksud" rows="3">{{ old('maksud') }}</textarea>
 						@error('maksud')
 						<div class="invalid-feedback">
@@ -103,7 +103,7 @@
 					<div class="row row-sm">
 						<div class="col-sm-4">
 							<div class="form-group">
-								<label for="lama" class="form-label">Lamanya Perjalanan Dinas</label>
+								<label for="lama" class="form-label">Lamanya Perjalanan Dinas <span class="text-danger">*</span></label>
 								<select name="lama" id="lama" class="form-control form-select select2 @error('lama') is-invalid @enderror">
 									<option value="">Pilih Lama Hari</option>
 									@foreach ($lamas as $lama)
@@ -121,7 +121,7 @@
 						</div>
 						<div class="col-sm-4">
 							<div class="form-group">
-								<label for="tgl_berangkat">Tanggal Berangkat</label>
+								<label for="tgl_berangkat">Tanggal Berangkat <span class="text-danger">*</span></label>
 								<input name="tgl_berangkat" value="{{ old('tgl_berangkat') }}" type="date" class="form-control @error('tgl_berangkat') is-invalid @enderror" id="tgl_berangkat" placeholder="Masukan tgl_berangkat">
 								@error('tgl_berangkat')
 								<div class="invalid-feedback">
@@ -146,7 +146,7 @@
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label for="alat_angkut_id" class="form-label">Alat Angkut</label>
+								<label for="alat_angkut_id" class="form-label">Alat Angkut <span class="text-danger">*</span></label>
 								<select name="alat_angkut_id" id="alat_angkut_id" class="form-control form-select select2 @error('alat_angkut_id') is-invalid @enderror">
 									<option value="">Pilih Alat Angkut</option>
 									@foreach ($alat_angkuts as $alat_angkut)
@@ -177,13 +177,13 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-sm-6">
+						<div class="col-sm-4">
 							<div class="form-group">
-								<label for="jenis_perdin_id" class="form-label">Jenis Perdin</label>
+								<label for="jenis_perdin_id" class="form-label">Jenis Perdin <span class="text-danger">*</span></label>
 								<select name="jenis_perdin_id" id="jenis_perdin_id" class="form-control form-select @error('jenis_perdin_id') is-invalid @enderror">
 									<option value="">Pilih Jenis Perdin</option>
 									@foreach ($jenis_perdins as $jenis_perdin)
-									<option value="{{ $jenis_perdin->id }}" @selected(old('jenis_perdin_id') == $jenis_perdin->id)>
+									<option value="{{ $jenis_perdin->id }}">
 										{{ $jenis_perdin->nama }}
 									</option>
 									@endforeach
@@ -195,9 +195,9 @@
 								@enderror
 							</div>
 						</div>
-						<div class="col-sm-6">
+						<div class="col-sm-4">
 							<div class="form-group">
-								<label for="tujuan_id" class="form-label">Tujuan</label>
+								<label for="tujuan_id" class="form-label">Tujuan <span class="text-danger">*</span></label>
 								<select name="tujuan_id" id="tujuan_id" class="form-control form-select select2 @error('tujuan_id') is-invalid @enderror">
 									<option value="">Pilih Tujuan</option>
 								</select>
@@ -208,10 +208,23 @@
 								@enderror
 							</div>
 						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label for="tujuan_lain_id" class="form-label">Tujuan Lain</label>
+								<select name="tujuan_lain_id" id="tujuan_lain_id" class="form-control form-select select2 @error('tujuan_lain_id') is-invalid @enderror">
+									<option value="">Pilih Tujuan Lain</option>
+								</select>
+								@error('tujuan_lain_id')
+								<div class="invalid-feedback">
+									{{ $message }}
+								</div>
+								@enderror
+							</div>
+						</div>
 					</div>
 
 					<div class="form-group">
-						<label for="lokasi">Lokasi</label>
+						<label for="lokasi">Lokasi <span class="text-danger">*</span></label>
 						<textarea name="lokasi" class="form-control @error('lokasi') is-invalid @enderror" id="lokasi" placeholder="Masukan lokasi" rows="3">{{ old('lokasi') }}</textarea>
 						@error('lokasi')
 						<div class="invalid-feedback">
@@ -223,7 +236,7 @@
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label for="pegawai_diperintah_id" class="form-label">Pegawai Yang Diperintahkan</label>
+								<label for="pegawai_diperintah_id" class="form-label">Pegawai Yang Diperintahkan <span class="text-danger">*</span></label>
 								<select name="pegawai_diperintah_id" id="pegawai_diperintah_id" class="form-control form-select select2 @error('pegawai_diperintah_id') is-invalid @enderror" disabled>
 									<option value="">Pilih Pegawai Yang Diperintahkan</option>
 									@foreach ($pegawais as $pegawai)

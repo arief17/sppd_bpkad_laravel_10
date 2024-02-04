@@ -28,22 +28,27 @@ class Wilayah extends Model
 
     public function uang_harians(): HasMany
     {
-        return $this->hasMany(UangHarian::class, 'wilayah');
+        return $this->hasMany(UangHarian::class, 'wilayah_id');
     }
 
     public function uang_transports(): HasMany
     {
-        return $this->hasMany(UangTransport::class, 'wilayah');
+        return $this->hasMany(UangTransport::class, 'wilayah_id');
     }
 
     public function uang_penginapans(): HasMany
     {
-        return $this->hasMany(UangPenginapan::class, 'wilayah');
+        return $this->hasMany(UangPenginapan::class, 'wilayah_id');
     }
 
     public function data_perdins(): HasMany
     {
-        return $this->hasMany(DataPerdin::class, 'tujuan');
+        return $this->hasMany(DataPerdin::class, 'tujuan_id');
+    }
+
+    public function data_perdins_lain(): HasMany
+    {
+        return $this->hasMany(DataPerdin::class, 'tujuan_lain_id');
     }
 
     public function getRouteKeyName()

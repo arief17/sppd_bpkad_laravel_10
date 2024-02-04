@@ -166,10 +166,15 @@ class DataPerdinController extends Controller
                 'alat_angkut_id' => 'required',
                 'jenis_perdin_id' => 'required',
                 'tujuan_id' => 'required',
+                'tujuan_lain_id' => 'nullable',
                 'lokasi' => 'required',
                 'pegawai_diperintah_id' => 'required',
                 'pegawai_mengikuti_id' => 'nullable',
             ]);
+
+            if ($request->tujuan_id == $request->tujuan_lain_id) {
+                return redirect()->back()->withInput()->with('failedSave', 'Tujuan pertama dan tujuan kedua tidak boleh sama!');
+            }
 
             $validatedData['slug'] = SlugService::createSlug(DataPerdin::class, 'slug', $request->maksud);
             $validatedData['author_id'] = auth()->user()->id;
@@ -190,10 +195,12 @@ class DataPerdinController extends Controller
             foreach ($selectedPegawaiIds as $pegawaiId) {
                 $pegawai = Pegawai::find($pegawaiId);
                 $pegawaiGolongan = str_replace('-', '_', $pegawai->golongan->slug);
+
                 $uangHarian = UangHarian::where('wilayah_id', $validatedData['tujuan_id'])->value($pegawaiGolongan);
                 $uangTransport = UangTransport::where('wilayah_id', $validatedData['tujuan_id'])->value($pegawaiGolongan);
                 $uangTiket = UangTransport::where('wilayah_id', $validatedData['tujuan_id'])->value('harga_tiket');
                 $uangPenginapan = UangPenginapan::where('wilayah_id', $validatedData['tujuan_id'])->value($pegawaiGolongan);
+
                 $kwitansi_perdin->pegawais()->attach($pegawaiId, [
                     'uang_harian' => $uangHarian ?? 0,
                     'uang_transport' => $uangTransport ?? 0,
@@ -384,9 +391,11 @@ class DataPerdinController extends Controller
             $pegawaiMengikuti = $dataPerdin->pegawai_mengikuti;
 
             $pegawaiDiperintah->ketentuan->decrement('jumlah_perdin');
+            $pegawaiDiperintah->ketentuan->update(['tersedia' => 1]);
 
             foreach ($pegawaiMengikuti as $pegawai) {
                 $pegawai->ketentuan->decrement('jumlah_perdin');
+                $pegawai->ketentuan->update(['tersedia' => 1]);
             }
 
             $dataPerdin->delete();

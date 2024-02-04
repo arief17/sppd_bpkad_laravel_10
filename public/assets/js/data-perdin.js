@@ -24,6 +24,9 @@ $('#jenis_perdin_id').on('change', function() {
     $('#tujuan_id').empty();
     $('#tujuan_id').append('<option value="">Pilih Tujuan</option>');
 
+    $('#tujuan_lain_id').empty();
+    $('#tujuan_lain_id').append('<option value="">Pilih Tujuan Lain</option>');
+
     $.ajax({
         url: '/get-tujuan/' + jenisPerdinId,
         type: 'GET',
@@ -31,20 +34,10 @@ $('#jenis_perdin_id').on('change', function() {
         success: function(data) {
             $.each(data, function(key, value) {
                 $('#tujuan_id').append('<option value="' + value.id + '">' + value.nama + '</option>');
+                $('#tujuan_lain_id').append('<option value="' + value.id + '">' + value.nama + '</option>');
             });
         }
     });
-});
-
-// Pegawai disable
-$('#tujuan_id').on('change', function() {
-    if ($('#tujuan_id').val() !== '') {
-        $('#pegawai_diperintah_id').prop('disabled', false);
-        $('#pegawai_mengikuti_id').prop('disabled', false);
-    } else {
-        $('#pegawai_diperintah_id').prop('disabled', true);
-        $('#pegawai_mengikuti_id').prop('disabled', true);
-    }
 });
 
 // Pilih pegawai
@@ -179,6 +172,14 @@ $('#jenis_perdin_id').on('change', function() {
 });
 $('#tujuan_id').on('change', function() {
     resetSelectedEmployees();
+
+    if ($('#tujuan_id').val() !== '') {
+        $('#pegawai_diperintah_id').prop('disabled', false);
+        $('#pegawai_mengikuti_id').prop('disabled', false);
+    } else {
+        $('#pegawai_diperintah_id').prop('disabled', true);
+        $('#pegawai_mengikuti_id').prop('disabled', true);
+    }
 });
 
 function formatToRupiah(angka) {

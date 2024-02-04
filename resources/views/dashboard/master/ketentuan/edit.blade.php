@@ -15,10 +15,14 @@
 				<form action="{{ route('ketentuan.show', $ketentuan->id) }}" method="post">
 					@csrf
 					@method('put')
-					
+
 					<div class="form-group">
 						<label for="pegawai">Nama Pegawai</label>
-						<input value="{{ old('pegawai', $ketentuan->pegawai) }}" type="text" class="form-control" id="pegawai" readonly>
+						<input value="{{ old('pegawai', $ketentuan->pegawai->nama) }}" type="text" class="form-control" id="pegawai" readonly>
+					</div>
+					<div class="form-group">
+						<label for="jumlah_perdin">Jumlah Perdin</label>
+						<input value="{{ old('jumlah_perdin', $ketentuan->jumlah_perdin) }}" type="text" class="form-control" id="jumlah_perdin" readonly>
 					</div>
 					<div class="form-group">
 						<label for="max_perdin">Maksimal Perdin</label>
@@ -29,7 +33,7 @@
 						</div>
 						@enderror
 					</div>
-					
+
 					<div class="form-group mb-0 mt-3 justify-content-end">
 						<button type="submit" class="btn btn-primary">Simpan</button>
 						<button type="reset" class="btn btn-secondary ms-3">Batal</button>
