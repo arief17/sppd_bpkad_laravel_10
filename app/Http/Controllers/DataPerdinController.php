@@ -257,9 +257,13 @@ class DataPerdinController extends Controller
         $authBidangId = auth()->user()->bidang_id;
 
         if (empty($authBidangId)) {
-            $pegawais = Pegawai::whereNotNull('golongan_id')->get();
+            $pegawais = Pegawai::whereNotNull('golongan_id')->whereHas('ketentuan', function ($query) {
+                $query->where('tersedia', 1);
+            })->get();
         } else {
-            $pegawais = Pegawai::whereNotNull('golongan_id')->where('bidang_id', $authBidangId)->get();
+            $pegawais = Pegawai::whereNotNull('golongan_id')->where('bidang_id', $authBidangId)->whereHas('ketentuan', function ($query) {
+                $query->where('tersedia', 1);
+            })->get();
         }
 
         $selectedPegawai = collect();
