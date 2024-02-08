@@ -26,6 +26,7 @@ jobs:
               git init -b main
               git remote add origin https://github.com/Hikuroshi/sppd_bpkad_laravel_10
             fi
+            rm -f .git/index.lock
             git fetch origin main
             git reset --hard origin/main
             git clean -f -d
