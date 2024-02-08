@@ -281,7 +281,7 @@
 					</tr>
 				</table>
 				<div style="text-align: center;">
-					<p style="margin-top: 10px;" style="text-transform: uppercase; font-weight: bold;">Kepala/Sekretaris</p>
+					<p style="margin-top: 10px;" style="text-transform: uppercase; font-weight: bold;">Kepala Dinas</p>
 
 					<img src="data:image/png;base64,{{ $ttd_kepala->fileTtdEncoded ?? $ttd_kepala }}" alt="{{ $ttd_kepala->nama ?? '' }}" height="60">
 					<p style="text-decoration: underline; font-weight: bold;">{{ $ttd_kepala->pegawai->nama ?? '' }}</p>

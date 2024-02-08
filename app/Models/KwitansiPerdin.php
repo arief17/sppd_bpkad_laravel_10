@@ -11,14 +11,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class KwitansiPerdin extends Model
 {
     use HasFactory, SoftDeletes;
-
+    
     protected $guarded = ['id'];
     protected $with = ['author', 'kegiatan_sub', 'pptk'];
-
+    
     public function terbilang($angka)
     {
         $angka = ltrim($angka, '0');
-
+    
         $bilangan = [
             '',
             'satu',
@@ -33,7 +33,7 @@ class KwitansiPerdin extends Model
             'sepuluh',
             'sebelas'
         ];
-
+    
         if (bccomp($angka, '12') == -1) {
             return $bilangan[intval($angka)];
         } elseif (bccomp($angka, '20') == -1) {
@@ -72,18 +72,18 @@ class KwitansiPerdin extends Model
     {
         return $this->belongsTo(KegiatanSub::class, 'kegiatan_sub_id');
     }
-
+    
     public function pptk(): BelongsTo
     {
         return $this->belongsTo(Pegawai::class, 'pptk_id');
     }
-
+    
     public function pegawais()
     {
         return $this->belongsToMany(Pegawai::class, 'kwitansi_pegawai', 'kwitansi_perdin_id', 'pegawai_id')
         ->withPivot('uang_harian', 'uang_transport', 'uang_tiket', 'uang_penginapan');
     }
-
+    
     public function data_perdin(): HasOne
     {
         return $this->hasOne(DataPerdin::class, 'laporan_perdin_id');

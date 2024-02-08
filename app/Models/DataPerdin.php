@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Gate;
 
 class DataPerdin extends Model
 {
@@ -51,6 +52,20 @@ class DataPerdin extends Model
 
     public static function getTotalByStatus($statusArray = null, $isCurrentMonth = false)
     {
+        $authUser = auth()->user();
+
+        if (Gate::allows('isOperator') && $authUser->bidang_id && !Gate::allows('isAdmin')) {
+            $data_perdins = DataPerdin::whereHas('author.bidang', function ($query) use ($authUser) {
+                $query->where('id', $authUser->bidang_id);
+            });
+        } else if (Gate::allows('isApproval') && $authUser->jabatan_id && !Gate::allows('isAdmin')) {
+            $data_perdins = DataPerdin::whereHas('tanda_tangan.pegawai.jabatan', function ($query) use ($authUser) {
+                $query->where('id', $authUser->jabatan_id);
+            });
+        } else {
+            $data_perdins = DataPerdin::query();
+        }
+
         $query = self::query();
 
         if ($statusArray) {
@@ -65,7 +80,9 @@ class DataPerdin extends Model
             $query->whereMonth('created_at', '=', now()->month);
         }
 
-        return $query->count();
+        $result = $query->whereIn('id', $data_perdins->pluck('id'))->count();
+
+        return $result;
     }
 
     public function author(): BelongsTo

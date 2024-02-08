@@ -26,21 +26,28 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('isAdmin', function(User $user){
             return $user->level_admin->slug === 'admin';
         });
+        Gate::define('isSuperOperator', function(User $user){
+            return $user->level_admin->slug === 'super-operator' || $user->level_admin->slug === 'admin';
+        });
         Gate::define('isOperator', function(User $user){
-            return $user->level_admin->slug === 'operator' || $user->level_admin->slug === 'admin';
+            return $user->level_admin->slug === 'operator' || $user->level_admin->slug === 'super-operator' || $user->level_admin->slug === 'admin';
         });
         Gate::define('isApproval', function(User $user){
             return $user->level_admin->slug === 'approval'|| $user->level_admin->slug === 'admin';
         });
         Gate::define('isApprovalOperator', function(User $user){
-            return $user->level_admin->slug === 'approval'|| $user->level_admin->slug === 'operator' || $user->level_admin->slug === 'admin';
+            return $user->level_admin->slug === 'approval'|| $user->level_admin->slug === 'operator' || $user->level_admin->slug === 'super-operator' || $user->level_admin->slug === 'admin';
         });
 
         View::composer('*', function ($view) {
             if (auth()->user()) {
                 $authUser = auth()->user();
 
-                if ($authUser->level_admin->slug === 'approval' && $authUser->jabatan_id) {
+                if (Gate::allows('isOperator') && $authUser->bidang_id && !Gate::allows('isAdmin')) {
+                    $data_perdins = DataPerdin::whereHas('author.bidang', function ($query) use ($authUser) {
+                        $query->where('id', $authUser->bidang_id);
+                    })->get();
+                } else if (Gate::allows('isApproval') && $authUser->jabatan_id && !Gate::allows('isAdmin')) {
                     $data_perdins = DataPerdin::whereHas('tanda_tangan.pegawai.jabatan', function ($query) use ($authUser) {
                         $query->where('id', $authUser->jabatan_id);
                     })->get();

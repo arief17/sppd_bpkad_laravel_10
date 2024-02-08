@@ -38,6 +38,11 @@ class User extends Authenticatable
         return $this->belongsTo(Jabatan::class, 'jabatan_id');
     }
 
+    public function data_perdins(): HasMany
+    {
+        return $this->hasMany(DataPerdin::class, 'author_id');
+    }
+
     public function bidang_authors(): HasMany
     {
         return $this->hasMany(Bidang::class, 'author_id');

@@ -186,7 +186,7 @@
 			</table>
 		</div>
 
-		<table style="margin-left: auto; margin-top: 15px; margin-bottom: 15px;">
+		<table style="margin-left: auto; margin-top: 20px; margin-bottom: 20px;">
 			<tr>
 				<td>Dikeluarkan di</td>
 				<td>: Serang</td>
@@ -199,7 +199,7 @@
 
 		<div style="float: right;">
 			<div style="text-align: center;">
-				<p style="margin-top: 10px;" style="text-transform: uppercase; font-weight: bold;">Pengguna Anggaran/Kuasa Pengguna Anggaran</p>
+				<p style="margin-top: 10px;" style="text-transform: uppercase; font-weight: bold;">Kepala Dinas</p>
 
 				<img src="data:image/png;base64,{{ $ttd_kepala->fileTtdEncoded ?? $ttd_kepala }}" alt="{{ $ttd_kepala->nama ?? '' }}" height="70">
 				<p style="text-decoration: underline; font-weight: bold;">{{ $ttd_kepala->pegawai->nama ?? '' }}</p>

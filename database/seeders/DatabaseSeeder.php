@@ -38,6 +38,10 @@ class DatabaseSeeder extends Seeder
             'slug' => 'operator',
         ]);
         LevelAdmin::create([
+            'nama' => 'Super Operator',
+            'slug' => 'super-operator',
+        ]);
+        LevelAdmin::create([
             'nama' => 'Approval',
             'slug' => 'approval',
         ]);
