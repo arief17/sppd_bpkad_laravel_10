@@ -14,7 +14,18 @@
 
 					<div class="form-group">
 						<label for="nama">Nama</label>
-						<input name="nama" value="{{ old('nama') }}" type="text" class="form-control" id="nama" placeholder="Masukan nama">
+						<input name="nama" value="{{ old('nama') }}" type="text" class="form-control" id="nama" placeholder="Masukan nama" required>
+					</div>
+					<div class="form-group">
+						<label for="nama">Jabatan</label>
+						<select name="jabatan" id="jabatan" class="form-control form-select select2">
+							<option value="">Pilih Jabatan</option>
+							@foreach ($jabatans as $jabatan)
+							<option value="{{ $jabatan->nama }}">
+								{{ $jabatan->nama }}
+							</option>
+							@endforeach
+						</select>
 					</div>
 					<div class="form-group">
 						<label for="nip">NIP</label>

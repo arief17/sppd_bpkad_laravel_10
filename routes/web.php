@@ -106,7 +106,7 @@ Route::middleware('can:isApprovalOperator')->group(function(){
 		Route::get('/dashboard/status-perdin/lap/pdf/{id}', 'lap')->name('lap-pdf')->middleware('auth');
 		Route::get('/dashboard/status-perdin/lap-bendahara/pdf/{id}', 'lap_bendahara')->name('lap-bendahara-pdf')->middleware('auth');
 		Route::get('/dashboard/status-perdin/kwitansi/pdf/{id}', 'kwitansi')->name('kwitansi-pdf')->middleware('auth');
-		Route::get('/dashboard/ttd-visum/pdf/{nama}/{nip}', 'ttd_visum')->name('ttd-visum-pdf')->middleware('auth');
+		Route::get('/dashboard/ttd-visum/pdf/{nama}/{nip}/{jabatan}', 'ttd_visum')->name('ttd-visum-pdf')->middleware('auth');
 	});
 
 	Route::get('/dashboard/ttd-visum', [TtdVisumController::class, 'create'])->name('ttd-visum.create')->middleware('auth');

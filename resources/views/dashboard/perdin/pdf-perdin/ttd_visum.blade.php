@@ -8,7 +8,7 @@
 		}
 
 		.gap-t td {
-			padding: 0.5px;
+			padding: 1px;
 		}
 
 		p, td {
@@ -78,6 +78,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
+							<p>{{ $jabatan }}</p>
 							<p style="padding-top: 50px;">
 								<p style="text-decoration: underline; font-weight: bold;">{{ $nama }}</p>
 								<p>NIP.{{ $nip }}</p>
@@ -106,6 +107,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
+							<p>{{ $jabatan }}</p>
 							<p style="padding-top: 50px;">
 								<p style="text-decoration: underline; font-weight: bold;">{{ $nama }}</p>
 								<p>NIP.{{ $nip }}</p>

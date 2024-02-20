@@ -139,11 +139,12 @@ class PerdinPdfController extends Controller
         return $pdf->stream();
     }
 
-    public function ttd_visum($nama, $nip)
+    public function ttd_visum($nama, $nip, $jabatan)
     {
         $pdf = Pdf::loadView('dashboard.perdin.pdf-perdin.ttd_visum', [
             'nama' => $nama,
             'nip' => $nip,
+            'jabatan' => $jabatan,
         ]);
 
         $pdf->setPaper(array(0,0,609.4488,935.433), 'portrait');
