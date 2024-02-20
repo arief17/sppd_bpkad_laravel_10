@@ -6,7 +6,7 @@
 				<button aria-label="Close" class="close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
 			</div>
 			<div class="modal-body">
-				<iframe src="{{ route('lap-bendahara-pdf', $kwitansi_perdin->id) }}" width="100%" height="500px"></iframe>
+				<iframe id="lap_bendahara-iframe-{{ $kwitansi_perdin->id }}" width="100%" height="500px"></iframe>
 			</div>
 		</div>
 	</div>

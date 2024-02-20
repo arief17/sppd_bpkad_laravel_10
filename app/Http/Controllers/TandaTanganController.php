@@ -26,9 +26,15 @@ class TandaTanganController extends Controller
      */
     public function create()
     {
+        $jenis_ttds = [
+            'pemberi_perintah' => 'Pejabat Pemberi Perintah',
+            'pptk' => 'Petugas Pelaksana Teknis Kegiatan'
+        ];
+
         return view('dashboard.master.tanda-tangan.create', [
             'title' => 'Tambah Tanda Tangan',
             'pegawais' => Pegawai::all(),
+            'jenis_ttds' => $jenis_ttds,
         ]);
     }
 
@@ -39,13 +45,10 @@ class TandaTanganController extends Controller
     {
         $validatedData = $request->validate([
             'pegawai_id' => 'required',
-            'status' => '',
-            'file_ttd' => 'image|max:10000'
+            'file_ttd' => 'image|max:10000',
+            'jenis_ttd'=> 'required',
         ]);
 
-        if (!$request->status) {
-            $validatedData['status'] = 0;
-        }
         $pegawai = Pegawai::where('id', $request->pegawai_id)->first();
 
         if ($request->file('file_ttd')) {
@@ -74,10 +77,16 @@ class TandaTanganController extends Controller
      */
     public function edit(TandaTangan $tandaTangan)
     {
+        $jenis_ttds = [
+            'pemberi_perintah' => 'Pejabat Pemberi Perintah',
+            'pptk' => 'Petugas Pelaksana Teknis Kegiatan'
+        ];
+
         return view('dashboard.master.tanda-tangan.edit', [
             'title' => 'Perbarui Tanda Tangan',
             'tanda_tangan' => $tandaTangan,
             'pegawais' => Pegawai::all(),
+            'jenis_ttds' => $jenis_ttds,
         ]);
     }
 
@@ -88,13 +97,10 @@ class TandaTanganController extends Controller
     {
         $validatedData = $request->validate([
             'pegawai_id' => 'required',
-            'status' => '',
-            'file_ttd' => 'image|max:10000'
+            'file_ttd' => 'image|max:10000',
+            'jenis_ttd'=> 'required',
+            'status' => 'required',
         ]);
-
-        if (!$request->status) {
-            $validatedData['status'] = 0;
-        }
 
         if ($request->file('file_ttd')) {
             if($request->oldTtd){

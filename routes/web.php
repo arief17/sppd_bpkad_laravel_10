@@ -10,6 +10,7 @@ use App\Http\Controllers\JenisPerdinController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\KegiatanSubController;
 use App\Http\Controllers\KetentuanController;
+use App\Http\Controllers\KabupatenController;
 use App\Http\Controllers\KwitansiPerdinController;
 use App\Http\Controllers\LamaController;
 use App\Http\Controllers\LaporanPerdinController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\PangkatController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PerdinPdfController;
 use App\Http\Controllers\RekapController;
+use App\Http\Controllers\TtdVisumController;
 use App\Http\Controllers\WilayahController;
 use App\Http\Controllers\SeksiController;
 use App\Http\Controllers\StatusPerdinController;
@@ -66,6 +68,7 @@ Route::middleware('can:isAdmin')->group(function(){
 	Route::resource('/dashboard/ketentuan', KetentuanController::class)->except('create', 'store', 'destroy')->middleware('auth');
 	Route::resource('/dashboard/bendahara', BendaharaController::class)->middleware('auth');
 	Route::resource('/dashboard/wilayah', WilayahController::class)->middleware('auth');
+	Route::resource('/dashboard/kabupaten', KabupatenController::class)->middleware('auth');
 	Route::resource('/dashboard/seksi', SeksiController::class)->middleware('auth');
 	Route::resource('/dashboard/tanda-tangan', TandaTanganController::class)->middleware('auth');
 	Route::resource('/dashboard/uang-harian', UangHarianController::class)->middleware('auth');
@@ -92,6 +95,7 @@ Route::middleware('can:isApprovalOperator')->group(function(){
 	Route::controller(DataPerdinController::class)->group(function(){
 		Route::get('/dashboard/data-perdin/status/{status}', 'index')->name('data-perdin.index')->middleware('auth');
 		Route::get('/get-tujuan/{jenisPerdinId}', 'getTujuan')->name('data-perdin.jenis_perdin')->middleware('auth');
+		Route::get('/get-kabupaten/{tujuanId}', 'getKabupaten')->name('data-perdin.kabupaten')->middleware('auth');
 		Route::get('/get-pegawai-info/{tujuanId}/{pegawaiId}', 'getPegawaiInfo')->name('data-perdin.get-pegawai')->middleware('auth');
 	});
 
@@ -102,7 +106,11 @@ Route::middleware('can:isApprovalOperator')->group(function(){
 		Route::get('/dashboard/status-perdin/lap/pdf/{id}', 'lap')->name('lap-pdf')->middleware('auth');
 		Route::get('/dashboard/status-perdin/lap-bendahara/pdf/{id}', 'lap_bendahara')->name('lap-bendahara-pdf')->middleware('auth');
 		Route::get('/dashboard/status-perdin/kwitansi/pdf/{id}', 'kwitansi')->name('kwitansi-pdf')->middleware('auth');
+		Route::get('/dashboard/ttd-visum/pdf/{nama}/{nip}', 'ttd_visum')->name('ttd-visum-pdf')->middleware('auth');
 	});
+
+	Route::get('/dashboard/ttd-visum', [TtdVisumController::class, 'create'])->name('ttd-visum.create')->middleware('auth');
+	Route::post('/dashboard/ttd-visum', [TtdVisumController::class, 'store'])->name('ttd-visum.store')->middleware('auth');
 
 	Route::resource('/dashboard/laporan-perdin', LaporanPerdinController::class)->only('index')->middleware('auth');
 	Route::resource('/dashboard/kwitansi-perdin', KwitansiPerdinController::class)->only('index')->middleware('auth');

@@ -63,10 +63,11 @@ class KetentuanController extends Controller
     {
         $validatedData = $request->validate([
             'max_perdin' => 'required|numeric',
+            'tersedia' => 'required|boolean',
         ]);
 
         $validatedData['author_id'] = auth()->user()->id;
-        
+
         Ketentuan::where('id', $ketentuan->id)->update($validatedData);
         return redirect()->route('ketentuan.index')->with('success', 'Ketentuan berhasil diperbarui!');
     }

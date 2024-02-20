@@ -7,7 +7,7 @@
 			</div>
 			<div class="modal-body">
 				@if(file_exists(storage_path('app/' . $laporan_perdin->file_laporan)))
-				<iframe src="data:application/pdf;base64,{{ base64_encode(file_get_contents(storage_path('app/' . $laporan_perdin->file_laporan))) }}" width="100%" height="500px"></iframe>
+				<iframe id="lap_input-iframe-{{ $laporan_perdin->id }}" width="100%" height="500px"></iframe>
 				@else
 				<p>File tidak ditemukan atau telah dihapus.</p>
 				@endif

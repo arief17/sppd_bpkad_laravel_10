@@ -10,24 +10,28 @@ class StatusPerdinController extends Controller
 {
     public function approve($id)
     {
-        if (StatusPerdin::find($id)->approve == '0') {
+        $statusPerdin = StatusPerdin::findOrFail($id);
+
+        if ($statusPerdin->approve == '0') {
             return redirect()->route('data-perdin.index', 'tolak')->with('success', 'Status Perdin telah dinonaktifkan karena telah ditolak');
         }
 
-        StatusPerdin::where('id', $id)->update(['approve' => 1]);
-        return redirect()->route('data-perdin.index', 'no_laporan')->with('success', 'Status Perdin berhasil diperbarui!');
+        $statusPerdin->update(['approve' => 1]);
+        return redirect()->route('data-perdin.show', $statusPerdin->data_perdin->slug)->with('success', 'Status Perdin berhasil diperbarui!');
     }
 
     public function tolak($id)
     {
+        $statusPerdin = StatusPerdin::findOrFail($id);
+
         $validatedData = request()->validate([
             'alasan_tolak' => 'required',
         ]);
 
         $validatedData['approve'] = 0;
 
-        StatusPerdin::where('id', $id)->update($validatedData);
-        return redirect()->route('data-perdin.index', 'no_laporan')->with('success', 'Status Perdin berhasil diperbarui!');
+        $statusPerdin->update($validatedData);
+        return redirect()->route('data-perdin.show', $statusPerdin->data_perdin->slug)->with('success', 'Status Perdin berhasil diperbarui!');
     }
 
     public function apiApprove(Request $request)

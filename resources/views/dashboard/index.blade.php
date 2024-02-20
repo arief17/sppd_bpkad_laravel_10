@@ -68,14 +68,15 @@
 		new Morris.Bar({
 			element: 'morrisBar2',
 			data: {!! $morrisData !!},
-			xkey: 'y',
-			ykeys: {!! $ykeys !!},
-			labels: {!! $labels !!},
-			barColors: {!! $barColors !!},
+			xkey: 'bidang',
+			ykeys: ['perdin'],
+			labels: ['Jumlah Perdin'],
+			barColors: ['#6D6EF3'],
 			gridTextSize: 11,
 			hideHover: 'auto',
 			resize: true,
-			redraw: true
+			redraw: true,
+			xLabelAngle: 50,
 		});
 	});
 </script>

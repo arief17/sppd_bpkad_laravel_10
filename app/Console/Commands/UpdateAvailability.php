@@ -27,7 +27,7 @@ class UpdateAvailability extends Command
     public function handle()
     {
         $today = now('Asia/Jakarta')->toDateString();
-        $data_perdin_selesai = DataPerdin::whereDate('tgl_berangkat', '>', $today)->whereDate('tgl_kembali', '<', $today)->get();
+        $data_perdin_selesai = DataPerdin::whereDate('tgl_berangkat', '>', $today)->whereDate('tgl_kembali', '<=', $today)->get();
 
         if ($data_perdin_selesai->isNotEmpty()) {
             foreach ($data_perdin_selesai as $perdin) {
@@ -39,7 +39,7 @@ class UpdateAvailability extends Command
             }
         }
 
-        $data_perdin_proses = DataPerdin::whereDate('tgl_berangkat', '<=', $today)->whereDate('tgl_kembali', '>=', $today)->get();
+        $data_perdin_proses = DataPerdin::whereDate('tgl_berangkat', '<=', $today)->whereDate('tgl_kembali', '>', $today)->get();
 
         $pegawai_selesai_ids = $data_perdin_selesai->pluck('pegawai_diperintah.id')->merge($data_perdin_selesai->pluck('pegawai_mengikuti.*.id'))->unique();
 

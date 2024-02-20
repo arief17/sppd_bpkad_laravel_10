@@ -7,7 +7,7 @@
 		<div class="card box-shadow-0 ">
 			<div class="card-header d-flex justify-content-between">
 				<h4 class="card-title mb-1">{{ $title }}</h4>
-				<a class="btn btn-secondary btn-sm" href="{{ route('data-perdin.index', $kwitansi_perdin->data_perdin->status->kwitansi ? 'sudah_bayar' : 'belum_bayar') }}">
+				<a class="btn btn-secondary btn-sm" href="{{ route('data-perdin.show', $kwitansi_perdin->data_perdin->slug) }}">
 					<i class="fa fa-reply"></i>
 				</a>
 			</div>
@@ -174,7 +174,7 @@
 							<button type="reset" class="btn btn-secondary">Batal</button>
 						</div>
 						@if ($kwitansi_perdin->data_perdin->status->kwitansi)
-						<a class="modal-effect btn btn-secondary" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#kwitansi-{{ $kwitansi_perdin->id }}">
+						<a class="modal-effect btn btn-secondary" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#kwitansi-{{ $kwitansi_perdin->id }}" onclick="loadContent('{{ route('kwitansi-pdf', $kwitansi_perdin->id) }}', 'kwitansi-iframe-{{ $kwitansi_perdin->id }}')">
 							<i class="fa fa-file"></i>
 							Cetak Kwitansi
 						</a>
@@ -195,6 +195,32 @@
 
 <!-- JQuery min js -->
 <script src="/assets/plugins/jquery/jquery.min.js"></script>
+
+<!-- Sweet-alert js  -->
+<script src="/assets/plugins/sweet-alert/sweetalert2.all.min.js"></script>
+
+@if(session()->has('success'))
+<script>
+	$(document).ready(function() {
+		var Toast = Swal.mixin({
+			toast: true,
+			position: 'top',
+			showConfirmButton: false,
+			timer: 5000,
+			timerProgressBar: true,
+			didOpen: (toast) => {
+				toast.addEventListener('mouseenter', Swal.stopTimer)
+				toast.addEventListener('mouseleave', Swal.resumeTimer)
+			}
+		});
+
+		Toast.fire({
+			icon: 'success',
+			title: '{{ session('success') }}'
+		});
+	});
+</script>
+@endif
 
 <script>
 	function formatToRupiah(angka) {
@@ -251,6 +277,11 @@
 			hitungTotalKeseluruhan();
 		});
 	});
+
+	function loadContent(url, iframeId) {
+        var iframe = document.getElementById(iframeId);
+        iframe.src = url;
+    }
 </script>
 
 <!--Internal  Datepicker js -->

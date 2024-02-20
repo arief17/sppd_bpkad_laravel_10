@@ -40,6 +40,11 @@ class TandaTangan extends Model
         return $this->hasMany(DataPerdin::class, 'tanda_tangan_id');
     }
 
+    public function data_perdins_pptk(): HasMany
+    {
+        return $this->hasMany(DataPerdin::class, 'pptk_id');
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';

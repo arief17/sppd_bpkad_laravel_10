@@ -30,15 +30,15 @@
 								<td>{{ $loop->iteration }}</td>
 								<td class="text-nowrap">
 									@if ($laporan_perdin->data_perdin->status->lap)
-										@if ($laporan_perdin->file_laporan)
-											<a class="modal-effect btn btn-secondary btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#lap-input-{{ $laporan_perdin->id }}">
+										@if ($laporan_perdin->file_laporan && file_exists(storage_path('app/' . $laporan_perdin->file_laporan)))
+											<a class="modal-effect btn btn-secondary btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#lap-input-{{ $laporan_perdin->id }}" onclick="loadContent('data:application/pdf;base64,{{ base64_encode(file_get_contents(storage_path('app/' . $laporan_perdin->file_laporan))) }}', 'lap_input-iframe-{{ $laporan_perdin->id }}')">
 												Laporan yang diinput
 											</a>
 										@else
 											<button class="not-laporan btn btn-danger btn-sm">Laporan yang diinput</button>
 										@endif
 
-										<a class="modal-effect btn btn-secondary btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#lap-{{ $laporan_perdin->id }}">
+										<a class="modal-effect btn btn-secondary btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#lap-{{ $laporan_perdin->id }}" onclick="loadContent('{{ route('lap-pdf', $laporan_perdin->id) }}', 'lap_cetak-iframe-{{ $laporan_perdin->id }}')">
 											Laporan perdin
 										</a>
 									@else
@@ -90,6 +90,11 @@
 			confirmButtonText: 'Ok',
 		});
 	});
+
+	function loadContent(url, iframeId) {
+        var iframe = document.getElementById(iframeId);
+        iframe.src = url;
+    }
 </script>
 
 <!-- Bootstrap Bundle js -->

@@ -8,47 +8,41 @@
 			<div class="card-header">
 				<div class="d-flex align-items-center">
 					<h3 class="card-title">{{ $title }}</h3>
-					<a href="{{ route('user.create') }}" class="btn btn-primary mg-l-auto"><i class="fas fa-plus"></i></a>
+					<a href="{{ route('kabupaten.create') }}" class="btn btn-primary mg-l-auto"><i class="fas fa-plus"></i></a>
 				</div>
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table border-top-0 table-bordered border-bottom" id="responsive-datatable">
+					<table class="table border-top-0 table-bordered text-nowrap border-bottom" id="responsive-datatable">
 						<thead>
 							<tr class="text-center">
 								<th class="border-bottom-0" style="width: 1%">No</th>
 								<th class="border-bottom-0" style="width: 1%">Aksi</th>
-								<th class="border-bottom-0">Username</th>
-								<th class="border-bottom-0">Level Admin</th>
-								<th class="border-bottom-0">Bidang</th>
-								<th class="border-bottom-0">Jabatan</th>
-								<th class="border-bottom-0">Last Login</th>
+								<th class="border-bottom-0">Nama</th>
+								<th class="border-bottom-0">Wilayah</th>
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($users as $user)
+							@foreach ($kabupatens as $kabupaten)
 							<tr>
 								<td class="text-center">{{ $loop->iteration }}</td>
-								<td class="text-nowrap">
-									<a class="btn btn-primary btn-sm" href="{{ route('user.show', $user->username) }}">
+								<td>
+									<a class="btn btn-primary btn-sm" href="{{ route('kabupaten.show', $kabupaten->slug) }}">
 										<i class="fas fa-eye"></i>
 									</a>
-									<a class="btn btn-info btn-sm" href="{{ route('user.edit', $user->username) }}">
+									<a class="btn btn-info btn-sm" href="{{ route('kabupaten.edit', $kabupaten->slug) }}">
 										<i class="fas fa-pencil-alt"></i>
 									</a>
-									<form action="{{ route('user.destroy', $user->username) }}" method="post" class="d-inline">
+									<form action="{{ route('kabupaten.destroy', $kabupaten->slug) }}" method="post" class="d-inline">
 										@method('delete')
 										@csrf
-										<button type="button" class="btn btn-danger btn-sm" id='deleteData' data-title="{{ $user->nama }}">
+										<button type="button" class="btn btn-danger btn-sm" id='deleteData' data-title="{{ $kabupaten->nama }}">
 											<i class="fas fa-trash"></i>
 										</button>
 									</form>
 								</td>
-								<td>{{ $user->username }}</td>
-								<td>{{ $user->level_admin->nama }}</td>
-								<td>{{ $user->bidang->nama ?? 'Belum ditentukan' }}</td>
-								<td>{{ $user->jabatan->nama ?? 'Belum ditentukan' }}</td>
-								<td class="text-center">{{ $user->last_login }}</td>
+								<td>{{ $kabupaten->nama }}</td>
+								<td>{{ $kabupaten->wilayah->nama }}</td>
 							</tr>
 							@endforeach
 						</tbody>

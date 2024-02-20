@@ -28,7 +28,7 @@
 								<td class="text-center">{{ $loop->iteration }}</td>
 								<td class="text-nowrap">
 									@if ($kwitansi_perdin->data_perdin->status->kwitansi)
-									<a class="modal-effect btn btn-secondary btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#lap-bendahara-{{ $kwitansi_perdin->id }}">
+									<a class="modal-effect btn btn-secondary btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#lap-bendahara-{{ $kwitansi_perdin->id }}" onclick="loadContent('{{ route('lap-bendahara-pdf', $kwitansi_perdin->id) }}', 'lap_bendahara-iframe-{{ $kwitansi_perdin->id }}')">
 										Laporan Bendahara
 									</a>
 									@else
@@ -73,6 +73,11 @@
 			confirmButtonText: 'Ok',
 		});
 	});
+
+	function loadContent(url, iframeId) {
+        var iframe = document.getElementById(iframeId);
+        iframe.src = url;
+    }
 </script>
 
 <!-- Bootstrap Bundle js -->

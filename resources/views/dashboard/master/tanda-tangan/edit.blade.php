@@ -15,7 +15,7 @@
 				<form action="{{ route('tanda-tangan.show', $tanda_tangan->slug) }}" method="post" enctype="multipart/form-data">
 					@csrf
 					@method('put')
-					
+
 					<div class="form-group">
 						<label for="pegawai_id" class="form-label">Pegawai</label>
 						<select name="pegawai_id" id="pegawai_id" class="form-control form-select select2 @error('pegawai_id') is-invalid @enderror">
@@ -43,19 +43,34 @@
 						@enderror
 					</div>
 					<div class="form-group">
-						<div class="form-check">
-							<input class="form-check-input @error('status') is-invalid @enderror" type="checkbox" name="status" value="1" id="status" @checked(old('status', $tanda_tangan->status))>
-							<label class="form-check-label" for="status">
-								Status
-							</label>
-							@error('status')
+						<label for="jenis_ttd" class="form-label">Jenis Tanda Tangan</label>
+						<select name="jenis_ttd" id="jenis_ttd" class="form-control form-select @error('jenis_ttd') is-invalid @enderror">
+							<option value="">Pilih Jenis Tanda Tangan</option>
+							@foreach ($jenis_ttds as $key => $jenis_ttd)
+								<option value="{{ $key }}" @selected(old('jenis_ttd', $tanda_tangan->jenis_ttd) == $key)>
+									{{ $jenis_ttd }}
+								</option>
+							@endforeach
+						</select>
+						@error('jenis_ttd')
 							<div class="invalid-feedback">
 								{{ $message }}
 							</div>
-							@enderror
-						</div>
+						@enderror
 					</div>
-					
+					<div class="form-group">
+						<label for="status" class="form-label">Status Tanda Tangan</label>
+						<select name="status" id="status" class="form-control form-select @error('status') is-invalid @enderror">
+							<option value="1" @selected(old('status', $tanda_tangan->status) == 1)>Aktif</option>
+							<option value="0" @selected(old('status', $tanda_tangan->status) == 0)>Tidak Aktif</option>
+						</select>
+						@error('status')
+						<div class="invalid-feedback">
+							{{ $message }}
+						</div>
+						@enderror
+					</div>
+
 					<div class="form-group mb-0 mt-3 justify-content-end">
 						<button type="submit" class="btn btn-primary">Simpan</button>
 						<button type="reset" class="btn btn-secondary ms-3">Batal</button>

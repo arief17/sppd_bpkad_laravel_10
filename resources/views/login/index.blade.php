@@ -61,7 +61,7 @@
 									<div class="card-sigin">
 										<div class="main-signup-header">
 											<h2>Login Aplikasi Surat Perintah Perjalanan Dinas (SPPD)</h2>
-											<h5 class="fw-semibold mb-4">Badan Pengelolaan Keuangan dan Aset Daerah (BPKAD)</h5>
+											<h5 class="fw-semibold mb-4">Dinas Pekerjaan Umum dan Penataan Ruang (DPUPR)</h5>
 											<hr>
 											<form action="{{ route('login') }}" method="post">
 												@csrf
@@ -87,7 +87,7 @@
 											<!-- Footer opened -->
 											<div class="main-footer ht-45">
 												<div class="container-fluid pd-t-0 ht-100p">
-													<span> Copyright © 2024 <a href="/" class="text-primary">SPPD BPKAD PROVINSI BANTEN</a> All rights reserved.</span>
+													<span> Copyright © 2024 <a href="/" class="text-primary">SPPD DPUPR PROVINSI BANTEN</a> All rights reserved.</span>
 												</div>
 											</div>
 											<!-- Footer closed -->

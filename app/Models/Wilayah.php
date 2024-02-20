@@ -26,6 +26,11 @@ class Wilayah extends Model
         return $this->belongsTo(JenisPerdin::class, 'jenis_perdin_id');
     }
 
+    public function kabupatens(): HasMany
+    {
+        return $this->hasMany(Kabupaten::class, 'wilayah_id');
+    }
+
     public function uang_harians(): HasMany
     {
         return $this->hasMany(UangHarian::class, 'wilayah_id');

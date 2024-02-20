@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tanda_tangans', function (Blueprint $table) {
+        Schema::create('kabupatens', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nama');
             $table->string('slug')->unique();
-            $table->unsignedBigInteger('pegawai_id');
-            $table->boolean('status')->default('1');
-            $table->enum('jenis_ttd', ['pemberi_perintah', 'pptk']);
-            $table->string('file_ttd')->nullable();
+            $table->unsignedBigInteger('wilayah_id');
             $table->unsignedBigInteger('author_id');
             $table->timestamps();
             $table->softDeletes();
@@ -29,7 +27,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('tanda_tangans', function (Blueprint $table) {
+        Schema::table('kabupatens', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
     }

@@ -7,43 +7,18 @@
 		<div class="card box-shadow-0 ">
 			<div class="card-header d-flex justify-content-between">
 				<h4 class="card-title mb-1">{{ $title }}</h4>
-				<a class="btn btn-secondary btn-sm" href="{{ route('ketentuan.index') }}">
-					<i class="fa fa-reply"></i>
-				</a>
 			</div>
 			<div class="card-body pt-0">
-				<form action="{{ route('ketentuan.show', $ketentuan->id) }}" method="post">
+				<form action="{{ route('ttd-visum.store') }}" method="post">
 					@csrf
-					@method('put')
 
 					<div class="form-group">
-						<label for="pegawai">Nama Pegawai</label>
-						<input value="{{ old('pegawai', $ketentuan->pegawai->nama) }}" type="text" class="form-control" id="pegawai" readonly>
+						<label for="nama">Nama</label>
+						<input name="nama" value="{{ old('nama') }}" type="text" class="form-control" id="nama" placeholder="Masukan nama">
 					</div>
 					<div class="form-group">
-						<label for="jumlah_perdin">Jumlah Perdin</label>
-						<input value="{{ old('jumlah_perdin', $ketentuan->jumlah_perdin) }}" type="text" class="form-control" id="jumlah_perdin" readonly>
-					</div>
-					<div class="form-group">
-						<label for="max_perdin">Maksimal Perdin</label>
-						<input name="max_perdin" value="{{ old('max_perdin', $ketentuan->max_perdin) }}" type="text" class="form-control @error('max_perdin') is-invalid @enderror" id="max_perdin" placeholder="Masukan max_perdin">
-						@error('max_perdin')
-						<div class="invalid-feedback">
-							{{ $message }}
-						</div>
-						@enderror
-					</div>
-					<div class="form-group">
-						<label for="tersedia" class="form-label">Ketersediaan Pegawai</label>
-						<select name="tersedia" id="tersedia" class="form-control form-select @error('tersedia') is-invalid @enderror">
-							<option value="1" @selected(old('tersedia', $ketentuan->tersedia) == 1)>Tersedia</option>
-							<option value="0" @selected(old('tersedia', $ketentuan->tersedia) == 0)>Sedang melakukan perjalanan dinas</option>
-						</select>
-						@error('tersedia')
-						<div class="invalid-feedback">
-							{{ $message }}
-						</div>
-						@enderror
+						<label for="nip">NIP</label>
+						<input name="nip" value="{{ old('nip') }}" type="text" class="form-control" id="nip" placeholder="Masukan nip">
 					</div>
 
 					<div class="form-group mb-0 mt-3 justify-content-end">

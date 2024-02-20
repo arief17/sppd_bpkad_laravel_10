@@ -8,7 +8,7 @@
 			<div class="card-header">
 				<div class="d-flex align-items-center">
 					<h3 class="card-title">{{ $title }}</h3>
-					<a href="{{ route('tanda-tangan.create') }}" class="btn btn-primary mg-l-auto">Tambah</a>
+					<a href="{{ route('tanda-tangan.create') }}" class="btn btn-primary mg-l-auto"><i class="fas fa-plus"></i></a>
 				</div>
 			</div>
 			<div class="card-body">
@@ -21,6 +21,7 @@
 								<th class="border-bottom-0">Tanda Tangan</th>
 								<th class="border-bottom-0">Nama</th>
 								<th class="border-bottom-0">Jabatan</th>
+								<th class="border-bottom-0">Jenis</th>
 								<th class="border-bottom-0">Status</th>
 							</tr>
 						</thead>
@@ -38,7 +39,7 @@
 									<form action="{{ route('tanda-tangan.destroy', $tanda_tangan->slug) }}" method="post" class="d-inline">
 										@method('delete')
 										@csrf
-										<button type="button" class="btn btn-danger btn-sm" id='deleteData' data-title="{{ $tanda_tangan->nama }}">
+										<button type="button" class="btn btn-danger btn-sm" id='deleteData' data-title="{{ $tanda_tangan->pegawai->nama }}">
 											<i class="fas fa-trash"></i>
 										</button>
 									</form>
@@ -48,6 +49,7 @@
 								</td>
 								<td>{{ $tanda_tangan->pegawai->nama }}</td>
 								<td>{{ $tanda_tangan->pegawai->jabatan->nama }}</td>
+								<td>{{ $tanda_tangan->jenis_ttd == 'pemberi_perintah' ? 'Pejabat Pemberi Perintah' : 'Petugas Pelaksana Teknis Kegiatan' }}</td>
 								<td>{{ $tanda_tangan->status ? 'Aktif' : 'Tidak Aktif' }}</td>
 							</tr>
 							@endforeach

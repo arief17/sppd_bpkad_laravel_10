@@ -56,18 +56,18 @@ class PerdinPdfController extends Controller
     {
         App::setLocale('id');
         $data_perdin = DataPerdin::where('slug', $slug)->first();
-        $ttd_kepala = TandaTangan::whereHas('pegawai.jabatan', function ($query) {
-            $query->where('nama', 'like', '%Kepala Badan%');
+        $ttd_sekret = TandaTangan::whereHas('pegawai.jabatan', function ($query) {
+            $query->where('nama', 'like', '%Sekretaris Dinas%');
         })->first();
 
-        $ttd_kepala = $ttd_kepala ?? 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+        $ttd_sekret = $ttd_sekret ?? 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
 
         $imgLogo = base64_encode(file_get_contents(public_path('assets/img/logo-banten2.png')));
 
         $pdf = Pdf::loadView('dashboard.perdin.pdf-perdin.visum2', [
             'data_perdin' => $data_perdin,
             'imgLogo' => $imgLogo,
-            'ttd_kepala' => $ttd_kepala
+            'ttd_sekret' => $ttd_sekret
         ]);
 
         $pdf->setPaper(array(0,0,609.4488,935.433), 'portrait');
@@ -132,6 +132,18 @@ class PerdinPdfController extends Controller
             'kwitansi_perdin' => $kwitansi_perdin,
             'imgLogo' => $imgLogo,
             'bendahara' => $bendahara,
+        ]);
+
+        $pdf->setPaper(array(0,0,609.4488,935.433), 'portrait');
+
+        return $pdf->stream();
+    }
+
+    public function ttd_visum($nama, $nip)
+    {
+        $pdf = Pdf::loadView('dashboard.perdin.pdf-perdin.ttd_visum', [
+            'nama' => $nama,
+            'nip' => $nip,
         ]);
 
         $pdf->setPaper(array(0,0,609.4488,935.433), 'portrait');

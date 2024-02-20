@@ -9,7 +9,7 @@
 				<div class="d-flex align-items-center">
 					<h3 class="card-title">{{ $title }}</h3>
 					@can('isOperator')
-					<a href="{{ route('data-perdin.create') }}" class="btn btn-primary mg-l-auto">Tambah</a>
+					<a href="{{ route('data-perdin.create') }}" class="btn btn-primary mg-l-auto"><i class="fas fa-plus"></i></a>
 					@endcan
 				</div>
 			</div>
@@ -38,34 +38,8 @@
 								<td class="text-center">{{ $loop->iteration }}</td>
 								<td>
 									<div class="btn-group" role="group">
-										@can('isApproval')
-										<a class="modal-effect btn {{ $data_perdin->status->approve ? 'btn-success' : 'btn-danger' }} btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#approve-{{ $data_perdin->slug }}">Approve</a>
-										@else
-										<button class="not-approval btn {{ $data_perdin->status->approve ? 'btn-success' : 'btn-danger' }} btn-sm">Approve</button>
-										@endcan
-
-										@if ($data_perdin->status->approve)
-										<a class="modal-effect btn btn-success btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#spt-{{ $data_perdin->slug }}">SPT</a>
-										<a class="modal-effect btn btn-success btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#visum1-{{ $data_perdin->slug }}">Visum 1</a>
-										<a class="modal-effect btn btn-success btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#visum2-{{ $data_perdin->slug }}">Visum 2</a>
-										<a class="modal-effect btn {{ $data_perdin->status->lap ? 'btn-success' : 'btn-danger' }} btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#lap-{{ $data_perdin->laporan_perdin_id }}">Lap</a>
-										@else
-										<button class="not-approve btn btn-danger btn-sm">SPT</button>
-										<button class="not-approve btn btn-danger btn-sm">Visum 1</button>
-										<button class="not-approve btn btn-danger btn-sm">Visum 2</button>
-										<button class="not-approve btn btn-danger btn-sm">Lap</button>
-										@endif
-
-										@if ($data_perdin->status->approve && $data_perdin->status->lap)
-										<a class="btn {{ $data_perdin->status->kwitansi ? 'btn-success' : 'btn-danger' }} btn-sm" href="{{ route('kwitansi-perdin.edit', $data_perdin->kwitansi_perdin_id) }}">Kwitansi</a>
-										@else
-										<button class="not-laporan btn btn-danger btn-sm">Kwitansi</button>
-										@endif
-									</div>
-
-									<div class="btn-group" role="group">
 										<a class="btn btn-primary btn-sm" href="{{ route('data-perdin.show', $data_perdin->slug) }}">
-											<i class="fas fa-folder"></i>
+											<i class="fas fa-eye"></i>
 										</a>
 										<a class="btn btn-info btn-sm" href="{{ route('data-perdin.edit', $data_perdin->slug) }}">
 											<i class="fas fa-pencil-alt"></i>
@@ -73,7 +47,7 @@
 										<form action="{{ route('data-perdin.destroy', $data_perdin->slug) }}" method="post" class="d-inline">
 											@method('delete')
 											@csrf
-											<button type="button" class="btn btn-danger btn-sm" id='deleteData' data-title="{{ $data_perdin->perihal }}">
+											<button type="button" class="btn btn-danger btn-sm" id='deleteData' data-title="{{ $data_perdin->maksud }}">
 												<i class="fas fa-trash"></i>
 											</button>
 										</form>
@@ -89,14 +63,6 @@
 								<td>{{ $data_perdin->jumlah_pegawai }}</td>
 								<td>{{ $data_perdin->jenis_perdin->nama }}</td>
 								<td>{{ $data_perdin->author->username }}</td>
-
-								@include('dashboard.perdin.status-perdin.approve')
-								@if ($data_perdin->status->approve)
-								@include('dashboard.perdin.status-perdin.spt')
-								@include('dashboard.perdin.status-perdin.visum1')
-								@include('dashboard.perdin.status-perdin.visum2')
-								@include('dashboard.perdin.status-perdin.lap')
-								@endif
 							</tr>
 							@endforeach
 						</tbody>
@@ -149,7 +115,7 @@
 
 		Swal.fire({
 			title: 'Hapus ' + title + '?',
-			html: "Apakah kamu yakin ingin menghapus <b>" + title + "</b>? Data yang sudah dihapus tidak bisa dikembalikan!",
+			html: "Apakah kamu yakin ingin menghapus data perdin dengan maksud <b>" + title + "</b>? Data yang sudah dihapus tidak bisa dikembalikan!",
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
@@ -160,32 +126,6 @@
 			if (result.isConfirmed) {
 				$(this).closest('form').submit();
 			}
-		});
-	});
-
-
-	$('.not-approve').click(function(e) {
-		Swal.fire({
-			title: 'Belum Approve',
-			icon: 'warning',
-			confirmButtonColor: '#3085d6',
-			confirmButtonText: 'Ok',
-		});
-	});
-	$('.not-laporan').click(function(e) {
-		Swal.fire({
-			title: 'Belum ada laporan',
-			icon: 'warning',
-			confirmButtonColor: '#3085d6',
-			confirmButtonText: 'Ok',
-		});
-	});
-	$('.not-approval').click(function(e) {
-		Swal.fire({
-			title: 'Hanya Approval yang bisa approve',
-			icon: 'warning',
-			confirmButtonColor: '#3085d6',
-			confirmButtonText: 'Ok',
 		});
 	});
 </script>

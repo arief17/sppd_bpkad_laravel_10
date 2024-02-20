@@ -14,7 +14,7 @@
 			<div class="card-body pt-0">
 				<form action="{{ route('tanda-tangan.index') }}" method="post" enctype="multipart/form-data">
 					@csrf
-					
+
 					<div class="form-group">
 						<label for="pegawai_id" class="form-label">Pegawai</label>
 						<select name="pegawai_id" id="pegawai_id" class="form-control form-select select2 @error('pegawai_id') is-invalid @enderror">
@@ -41,19 +41,22 @@
 						@enderror
 					</div>
 					<div class="form-group">
-						<div class="form-check">
-							<input class="form-check-input @error('status') is-invalid @enderror" type="checkbox" name="status" value="1" id="status" @checked(old('status'))>
-							<label class="form-check-label" for="status">
-								Status
-							</label>
-							@error('status')
+						<label for="jenis_ttd" class="form-label">Jenis Tanda Tangan</label>
+						<select name="jenis_ttd" id="jenis_ttd" class="form-control form-select @error('jenis_ttd') is-invalid @enderror">
+							<option value="">Pilih Jenis Tanda Tangan</option>
+							@foreach ($jenis_ttds as $key => $jenis_ttd)
+								<option value="{{ $key }}" @selected(old('jenis_ttd') == $key)>
+									{{ $jenis_ttd }}
+								</option>
+							@endforeach
+						</select>
+						@error('jenis_ttd')
 							<div class="invalid-feedback">
 								{{ $message }}
 							</div>
-							@enderror
-						</div>
+						@enderror
 					</div>
-					
+
 					<div class="form-group mb-0 mt-3 justify-content-end">
 						<button type="submit" class="btn btn-primary">Simpan</button>
 						<button type="reset" class="btn btn-secondary ms-3">Batal</button>

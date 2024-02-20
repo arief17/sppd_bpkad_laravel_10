@@ -60,7 +60,7 @@
 	<div style="margin: 5px 0;">
 
 		<div style="text-align: center; margin: 0 0 10px 0;">
-			<h2 style="text-decoration: underline;">SURAT PERJALANAN DINAS (SPD)</h2>
+			<h4 style="text-decoration: underline;">SURAT PERINTAH PERJALANAN DINAS</h4>
 		</div>
 
 		<div style="border: 1px solid black; padding: 2px;">
@@ -123,7 +123,7 @@
 					<td style="width: 1%; border-right: 0; border-top: 0;">b. </td>
 					<td style="border-left: 0; border-top: 0;">Tempat Tujuan</td>
 					<td style="width: 1%; border-right: 0; border-top: 0;">b. </td>
-					<td colspan="2" style="border-left: 0; border-top: 0;">{{ $data_perdin->tujuan->nama }}</td>
+					<td colspan="2" style="border-left: 0; border-top: 0;">{{ $data_perdin->kabupaten->nama ?? '' }}</td>
 				</tr>
 
 				<tr>

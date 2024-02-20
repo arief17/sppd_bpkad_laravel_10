@@ -8,7 +8,7 @@
 			<div class="card-header">
 				<div class="d-flex align-items-center">
 					<h3 class="card-title">{{ $title }}</h3>
-					<a href="{{ route('bendahara.create') }}" class="btn btn-primary mg-l-auto">Tambah</a>
+					<a href="{{ route('bendahara.create') }}" class="btn btn-primary mg-l-auto"><i class="fas fa-plus"></i></a>
 				</div>
 			</div>
 			<div class="card-body">

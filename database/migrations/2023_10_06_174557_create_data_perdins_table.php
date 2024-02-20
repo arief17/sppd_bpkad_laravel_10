@@ -20,15 +20,17 @@ return new class extends Migration
             $table->text('perihal')->nullable();
             $table->string('no_spt')->nullable();
             $table->unsignedBigInteger('tanda_tangan_id');
+            $table->unsignedBigInteger('pptk_id');
             $table->text('maksud');
             $table->integer('lama');
             $table->date('tgl_berangkat');
             $table->date('tgl_kembali');
             $table->unsignedBigInteger('alat_angkut_id');
-            $table->unsignedBigInteger('jenis_perdin_id');
             $table->string('kedudukan')->default('Kota Serang');
+            $table->unsignedBigInteger('jenis_perdin_id');
             $table->unsignedBigInteger('tujuan_id');
             $table->unsignedBigInteger('tujuan_lain_id')->nullable();
+            $table->unsignedBigInteger('kabupaten_id');
             $table->text('lokasi');
             $table->unsignedBigInteger('pegawai_diperintah_id');
             $table->string('jumlah_pegawai');
