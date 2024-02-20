@@ -18,14 +18,7 @@
 					</div>
 					<div class="form-group">
 						<label for="nama">Jabatan</label>
-						<select name="jabatan" id="jabatan" class="form-control form-select select2">
-							<option value="">Pilih Jabatan</option>
-							@foreach ($jabatans as $jabatan)
-							<option value="{{ $jabatan->nama }}">
-								{{ $jabatan->nama }}
-							</option>
-							@endforeach
-						</select>
+						<input name="jabatan" value="{{ old('jabatan') }}" type="text" class="form-control" id="jabatan" placeholder="Masukan jabatan" required>
 					</div>
 					<div class="form-group">
 						<label for="nip">NIP</label>

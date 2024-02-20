@@ -12,7 +12,6 @@ class TtdVisumController extends Controller
     {
         return view('dashboard.perdin.ttd-visum.index', [
             'title' => 'Isi Tanda Tangan Visum 2',
-            'jabatans' => Jabatan::get('nama'),
         ]);
     }
 
