@@ -41,8 +41,11 @@
 	<div style="margin: 30px 60px 0 60px;">
 
 		<div style="text-align: center; margin-bottom: 30px">
-            <p style="margin: 0;">SURAT TUGAS</p>
-            <p style="margin: 0;">NOMOR................................</p>
+            <p style="margin: 0; text-decoration: underline; font-weight: bold;">SURAT TUGAS</p>
+            <p style="margin: 0;">
+                <span style="padding-right: 100px;">Nomor : 000.1.2.3/</span>
+                /SEK-BPKAD/2024
+            </p>
 		</div>
 
 		<table style="width: 100%;">
@@ -59,7 +62,7 @@
             </tr>
             <tr>
                 <td colspan="5">
-                    <p style="text-align: center; padding: 30px 0px">MEMERINTAHKAN:</p>
+                    <p style="text-align: center; padding: 30px 0px; font-weight: bold;">MEMERINTAHKAN:</p>
                 </td>
             </tr>
 			<tr>
