@@ -16,7 +16,7 @@ class DataPerdin extends Model
     use HasFactory, Sluggable, SoftDeletes, CascadeSoftDeletes;
 
     protected $guarded = ['id'];
-    protected $with = ['author', 'tanda_tangan', 'pptk', 'alat_angkut', 'jenis_perdin', 'tujuan', 'tujuan_lain', 'kabupaten', 'pegawai_diperintah', 'status'];
+    protected $with = ['author', 'tanda_tangan', 'pptk', 'alat_angkut', 'jenis_perdin', 'tujuan', 'tujuan_lain', 'kabupaten', 'kabupaten_lain', 'pegawai_diperintah', 'status'];
     protected $cascadeDeletes = ['status', 'laporan_perdin', 'kwitansi_perdin'];
 
     public function getTtdFormatedAttribute()
@@ -115,9 +115,19 @@ class DataPerdin extends Model
         return $this->belongsTo(Wilayah::class, 'tujuan_id');
     }
 
+    public function tujuan_lain(): BelongsTo
+    {
+        return $this->belongsTo(Wilayah::class, 'tujuan_lain_id');
+    }
+
     public function kabupaten(): BelongsTo
     {
         return $this->belongsTo(Kabupaten::class, 'kabupaten_id');
+    }
+
+    public function kabupaten_lain(): BelongsTo
+    {
+        return $this->belongsTo(Kabupaten::class, 'kabupaten_lain_id');
     }
 
     public function pegawai_diperintah(): BelongsTo

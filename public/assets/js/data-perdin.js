@@ -30,6 +30,9 @@ $('#jenis_perdin_id').on('change', function() {
     $('#kabupaten_id').empty();
     $('#kabupaten_id').append('<option value="">Pilih Tujuan</option>');
 
+    $('#kabupaten_lain_id').empty();
+    $('#kabupaten_lain_id').append('<option value="">Pilih Tujuan</option>');
+
     $.ajax({
         url: '/get-tujuan/' + jenisPerdinId,
         type: 'GET',
@@ -57,6 +60,25 @@ $('#tujuan_id').on('change', function() {
         success: function(data) {
             $.each(data, function(key, value) {
                 $('#kabupaten_id').append('<option value="' + value.id + '">' + value.nama + '</option>');
+            });
+        }
+    });
+});
+
+// Kabupaten yang menyesuaikan wilayah
+$('#tujuan_lain_id').on('change', function() {
+    let tujuanId = $('#tujuan_lain_id').val();
+
+    $('#kabupaten_lain_id').empty();
+    $('#kabupaten_lain_id').append('<option value="">Pilih Tujuan</option>');
+
+    $.ajax({
+        url: '/get-kabupaten/' + tujuanId,
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            $.each(data, function(key, value) {
+                $('#kabupaten_lain_id').append('<option value="' + value.id + '">' + value.nama + '</option>');
             });
         }
     });

@@ -268,7 +268,7 @@
 			</tr>
 			<tr>
 				<td style="white-space: nowrap;">Yaitu untuk</td>
-				<td>: {{ $kwitansi_perdin->data_perdin->maksud }} di {{ $kwitansi_perdin->data_perdin->tujuan->nama }} {{ $kwitansi_perdin->data_perdin->tujuan_lain ? 'dan ' . $kwitansi_perdin->data_perdin->tujuan_lain->nama : '' }} Tgl {{ Carbon\Carbon::parse($kwitansi_perdin->data_perdin->tgl_berangkat)->isoFormat('D MMMM YYYY') }}, Sesuai SPT No: {{ $kwitansi_perdin->data_perdin->no_spt }}</td>
+				<td>: {{ $kwitansi_perdin->data_perdin->maksud }} di {{ $kwitansi_perdin->data_perdin->kabupaten->nama }} {{ $kwitansi_perdin->data_perdin->kabupaten_lain ? 'dan ' . $kwitansi_perdin->data_perdin->kabupaten_lain->nama : '' }} Tgl {{ Carbon\Carbon::parse($kwitansi_perdin->data_perdin->tgl_berangkat)->isoFormat('D MMMM YYYY') }}, Sesuai SPT No: {{ $kwitansi_perdin->data_perdin->no_spt }}</td>
 			</tr>
 
 			<tr><td><br></td><td><br></td></tr>

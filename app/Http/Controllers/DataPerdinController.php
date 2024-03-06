@@ -197,12 +197,13 @@ class DataPerdinController extends Controller
                 'tujuan_id' => 'required',
                 'tujuan_lain_id' => 'nullable',
                 'kabupaten_id' => 'required',
+                'kabupaten_lain_id' => 'required',
                 'lokasi' => 'required',
                 'pegawai_diperintah_id' => 'required',
                 'pegawai_mengikuti_id' => 'nullable',
             ]);
 
-            if ($request->tujuan_id == $request->tujuan_lain_id) {
+            if ($request->kabupaten_id == $request->kabupaten_lain_id) {
                 return redirect()->back()->withInput()->with('failedSave', 'Tujuan pertama dan tujuan kedua tidak boleh sama!');
             }
 
@@ -374,7 +375,9 @@ class DataPerdinController extends Controller
                 'alat_angkut_id' => 'required',
                 'jenis_perdin_id' => 'required',
                 'tujuan_id' => 'required',
+                'tujuan_lain_id' => 'nullable',
                 'kabupaten_id' => 'required',
+                'kabupaten_lain_id' => 'required',
                 'lokasi' => 'required',
                 'pegawai_diperintah_id' => 'required',
                 'pegawai_mengikuti_id' => 'nullable',

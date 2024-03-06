@@ -31,6 +31,7 @@ return new class extends Migration
             $table->unsignedBigInteger('tujuan_id');
             $table->unsignedBigInteger('tujuan_lain_id')->nullable();
             $table->unsignedBigInteger('kabupaten_id');
+            $table->unsignedBigInteger('kabupaten_lain_id')->nullable();
             $table->text('lokasi');
             $table->unsignedBigInteger('pegawai_diperintah_id');
             $table->string('jumlah_pegawai');

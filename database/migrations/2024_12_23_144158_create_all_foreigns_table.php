@@ -102,7 +102,9 @@ return new class extends Migration
             $table->foreign('pptk_id')->references('id')->on('tanda_tangans');
             $table->foreign('alat_angkut_id')->references('id')->on('alat_angkuts');
             $table->foreign('tujuan_id')->references('id')->on('wilayahs');
+            $table->foreign('tujuan_lain_id')->references('id')->on('wilayahs');
             $table->foreign('kabupaten_id')->references('id')->on('kabupatens');
+            $table->foreign('kabupaten_lain_id')->references('id')->on('kabupatens');
             $table->foreign('jenis_perdin_id')->references('id')->on('jenis_perdins');
             $table->foreign('pegawai_diperintah_id')->references('id')->on('pegawais');
             $table->foreign('status_id')->references('id')->on('status_perdins');
