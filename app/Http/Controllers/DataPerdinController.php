@@ -197,7 +197,7 @@ class DataPerdinController extends Controller
                 'tujuan_id' => 'required',
                 'tujuan_lain_id' => 'nullable',
                 'kabupaten_id' => 'required',
-                'kabupaten_lain_id' => 'required',
+                'kabupaten_lain_id' => 'nullable',
                 'lokasi' => 'required',
                 'pegawai_diperintah_id' => 'required',
                 'pegawai_mengikuti_id' => 'nullable',
