@@ -12,24 +12,29 @@
         }
 
         p, td {
-            font-size: 18px;
+            font-size: 16px;
         }
     </style>
 </head>
 <body style="font-family: Times, serif; margin: 30px;">
-    <div style="float: left;">
-        <img src="data:image/png;base64,{{ $imgLogo }}" width="80">
-    </div>
-    <div style="text-align: center;">
-        <h2>
-			PEMERINTAH PROVINSI BANTEN <br>
-            BADAN PENGELOLAAN KEUANGAN DAN ASET DAERAH
-        </h2>
-        <small>
-            KAWASAN PUSAT PEMERINTAHAN PROVINSI BANTEN (KP3B) <br>
-            Jl. Syech Nawawi Al- Bantani, Palima Serang Telp./Fax. (0254) 267019, 267008, 267009
-        </small>
-    </div>
+    <table>
+        <tr>
+            <td>
+                <img src="data:image/png;base64,{{ $imgLogo }}" width="80">
+            </td>
+            <td style="width: 100%;">
+                <div style="text-align: center;">
+                    <p style="font-size: x-large;">PEMERINTAH PROVINSI BANTEN</p>
+                    <h2>BADAN PENGELOLAAN KEUANGAN DAN ASET DAERAH</h2>
+                    <small>
+                        Kawasan Pusat Pemerintahan Provinsi Banten (KP3B) <br>
+                        Jalan Syech Nawawi Al Bantani, Palima Serang Banten <br>
+                        Laman : bpkad.bantenprov.go.id Pos-el : bpkad@bantenprov.go.id Kode Pos 42171
+                    </small>
+                </div>
+            </td>
+        </tr>
+    </table>
 
     <hr style="
     border-top: 3px solid;
@@ -50,44 +55,75 @@
             </tr>
         </table>
 
-        <h3 style="text-decoration: underline; font-weight: bold; text-align: center;">SURAT PERINTAH</h3>
+        <div style="text-align: center; margin-bottom: 30px">
+            <p style="margin: 0; font-size: 20px;">SURAT PERINTAH</p>
+            <p style="margin: 0;">
+                <span style="padding-right: 100px;">NOMOR : 900.1.7.2/</span>
+                /2024
+            </p>
+		</div>
 
-        <table style="margin-top: 20px; margin-bottom: 20px;">
+        <table style="margin-top: 20px;">
             <tr>
                 <td>Berikan/Keluarkan uang sebesar</td>
-                <td>: Rp.</td>
-                <td>{{ number_format($total_uang, 2, ',', '.') }}</td>
-            </tr>
-            <tr>
-                <td colspan="3">({{ ucwords($kwitansi_perdin->terbilang($total_uang)) }} Rupiah)</td>
+                <td>:</td>
+                <td style="font-weight: bold;">Rp. {{ number_format($total_uang, 0, '.', '.') }},-</td>
             </tr>
         </table>
-        <table style="margin-top: 20px; margin-bottom: 20px;">
+        <table style="margin-bottom: 20px;">
+            <tr>
+                <td>Terbilang</td>
+                <td>:</td>
+                <td style="font-weight: bold; font-style: italic;">{{ ucwords($kwitansi_perdin->terbilang($total_uang)) }}</td>
+            </tr>
             <tr>
                 <td>Kepada</td>
                 <td>:</td>
-                <td>{{ $kwitansi_perdin->data_perdin->pegawai_diperintah->nama }} dkk</td>
+                <td style="font-weight: bold;">{{ $kwitansi_perdin->data_perdin->pegawai_diperintah->nama }} Dkk</td>
             </tr>
             <tr>
                 <td>Keperluan</td>
                 <td>:</td>
                 <td>
-                    <p>Belanja {{ $kwitansi_perdin->data_perdin->jenis_perdin->nama }} untuk {{ $kwitansi_perdin->data_perdin->maksud }}</p>
-                    <p>{{ $kwitansi_perdin->data_perdin->tujuan->nama }} pada Tanggal {{ Carbon\Carbon::parse($kwitansi_perdin->data_perdin->tgl_berangkat)->isoFormat('D MMMM YYYY') }}</p>
-                    <p>Kode Rekening {{ $kwitansi_perdin->no_rek }}</p>
-                    <p>Kegiatan {{ $kwitansi_perdin->kegiatan_sub->kegiatan->nama }}</p>
-                    <p>Sub Kegiatan {{ $kwitansi_perdin->kegiatan_sub->nama }}</p>
+                    Belanja {{ $kwitansi_perdin->data_perdin->jenis_perdin->nama }} ke {{ $kwitansi_perdin->data_perdin->lokasi }}, tanggal {{ Carbon\Carbon::parse($kwitansi_perdin->data_perdin->tgl_berangkat)->isoFormat('D MMMM YYYY') }}
                 </td>
+            </tr>
+            <tr>
+                <td>Kegiatan</td>
+                <td>:</td>
+                <td>{{ $kwitansi_perdin->kegiatan_sub->kegiatan->nama }}</td>
+            </tr>
+            <tr>
+                <td>Sub Kegiatan</td>
+                <td>:</td>
+                <td>{{ $kwitansi_perdin->kegiatan_sub->nama }}</td>
+            </tr>
+            <tr>
+                <td style="white-space: nowrap;">Kode Rekening</td>
+                <td>:</td>
+                <td>{{ $kwitansi_perdin->no_rek }}</td>
             </tr>
         </table>
 
-        <div style="text-align: center;">
-            <span style="padding-right: 120px">Serang,</span> {{ now()->isoFormat('YYYY') }}
-            <h4>Pengguna Anggaran</h4>
-            <img src="data:image/png;base64,{{ $ttd_kepala->fileTtdEncoded ?? $ttd_kepala }}" alt="{{ $ttd_kepala->nama ?? '' }}" height="70">
-            <p style="text-decoration: underline; font-weight: bold;">{{ $ttd_kepala->pegawai->nama ?? '' }}</p>
-            <p>NIP.{{ $ttd_kepala->pegawai->nip ?? '' }}</p>
-        </div>
+        <table style="width: 100%;">
+			<tr>
+				<td style="width: 50%"></td>
+				<td>
+					<div style="text-align: center;">
+						<div style="display: inline-block; text-align: left;">
+							<p style="margin-top: 20px;">
+								<span style="padding-right: 100px;">Serang,</span> {{ now()->isoFormat('YYYY') }} <br>
+								Pengguna Anggaran
+							</p>
+							<img src="data:image/png;base64,{{ $kwitansi_perdin->data_perdin->tanda_tangan->fileTtdEncoded }}" alt="{{ $kwitansi_perdin->data_perdin->tanda_tangan->nama }}" height="70">
+							<p>{{ $kwitansi_perdin->data_perdin->tanda_tangan->pegawai->nama }}</p>
+                            <p>{{ $kwitansi_perdin->data_perdin->tanda_tangan->pegawai->pangkat->nama ?? '' }}</p>
+							<p>NIP {{ $kwitansi_perdin->data_perdin->tanda_tangan->pegawai->nip }}</p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
     </div>
 </body>
 </html>

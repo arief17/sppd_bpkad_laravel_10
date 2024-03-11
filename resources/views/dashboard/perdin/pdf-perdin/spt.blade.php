@@ -17,19 +17,24 @@
 	</style>
 </head>
 <body style="font-family: Times, serif; margin: 30px;">
-	<div style="float: left;">
-		<img src="data:image/png;base64,{{ $imgLogo }}" width="80">
-	</div>
-	<div style="text-align: center;">
-		<h2>
-			PEMERINTAH PROVINSI BANTEN <br>
-			BADAN PENGELOLAAN KEUANGAN DAN ASET DAERAH
-		</h2>
-		<small>
-			KAWASAN PUSAT PEMERINTAHAN PROVINSI BANTEN (KP3B) <br>
-			Jl. Syech Nawawi Al- Bantani, Palima Serang Telp./Fax. (0254) 267019, 267008, 267009
-		</small>
-	</div>
+    <table>
+        <tr>
+            <td>
+                <img src="data:image/png;base64,{{ $imgLogo }}" width="80">
+            </td>
+            <td style="width: 100%;">
+                <div style="text-align: center;">
+                    <p style="font-size: x-large;">PEMERINTAH PROVINSI BANTEN</p>
+                    <h2>BADAN PENGELOLAAN KEUANGAN DAN ASET DAERAH</h2>
+                    <small>
+                        Kawasan Pusat Pemerintahan Provinsi Banten (KP3B) <br>
+                        Jalan Syech Nawawi Al Bantani, Palima Serang Banten <br>
+                        Laman : bpkad.bantenprov.go.id Pos-el : bpkad@bantenprov.go.id Kode Pos 42171
+                    </small>
+                </div>
+            </td>
+        </tr>
+    </table>
 
 	<hr style="
 	border-top: 3px solid;
@@ -41,7 +46,7 @@
 	<div style="margin: 30px 60px 0 60px;">
 
 		<div style="text-align: center; margin-bottom: 30px">
-            <p style="margin: 0; text-decoration: underline; font-weight: bold;">SURAT TUGAS</p>
+            <p style="margin: 0; font-size: 20px;">SURAT TUGAS</p>
             <p style="margin: 0;">
                 <span style="padding-right: 100px;">Nomor : 000.1.2.3/</span>
                 /SEK-BPKAD/2024
@@ -51,18 +56,24 @@
 		<table style="width: 100%;">
             <tr>
                 <td>Dasar</td>
-                <td colspan="4">:
+                <td>:</td>
+                <td colspan="3">
 					@if ($data_perdin->surat_dari)
 					<span style="text-transform: capitalize">
-						Berdasarkan surat dari {{ $data_perdin->surat_dari }} nomor {{ $data_perdin->nomor_surat }} tanggal {{ Carbon\Carbon::parse($data_perdin->tgl_surat)->isoFormat('D MMMM YYYY') }} perihal {{ $data_perdin->perihal }}.
+						Surat undangan No {{ $data_perdin->nomor_surat }}
+                        Tanggal {{ Carbon\Carbon::parse($data_perdin->tgl_surat)->isoFormat('D MMMM YYYY') }}
+                        tentang {{ $data_perdin->perihal }}/DPA Tahun Anggaran 2024
+                        No {{ $data_perdin->nomor_surat }}
+                        Tanggal {{ Carbon\Carbon::parse($data_perdin->tgl_surat)->isoFormat('D MMMM YYYY') }}
+                        {{ $data_perdin->kwitansi_perdin->kegiatan_sub ? 'Kegiatan' . $data_perdin->kwitansi_perdin->kegiatan_sub->kegiatan->nama . 'Sub Kegiatan' . $data_perdin->kwitansi_perdin->kegiatan_sub->nama : '' }},
 					</span>
 					@endif
-					Dengan ini, <span style="text-transform: capitalize">{{ strtolower($data_perdin->tanda_tangan->pegawai->jabatan->nama) }}.</span>
+                    Maka <span style="text-transform: capitalize">{{ strtolower($data_perdin->tanda_tangan->pegawai->jabatan->nama) }}</span>
 				</td>
             </tr>
             <tr>
                 <td colspan="5">
-                    <p style="text-align: center; padding: 30px 0px; font-weight: bold;">MEMERINTAHKAN:</p>
+                    <p style="text-align: center; padding: 30px 0px; font-size: 20px;">MEMERINTAHKAN:</p>
                 </td>
             </tr>
 			<tr>
@@ -125,11 +136,32 @@
 			@endforeach
 
 			<tr>
-				<td>Untuk</td>
+                <td>Untuk</td>
 				<td>:</td>
-				<td colspan="3">{{ $data_perdin->maksud }}</td>
+				<td colspan="3">Melaksanakan Koordinasi {{ $data_perdin->maksud }} yang dilaksanakan pada:</td>
 			</tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Hari</td>
+                <td colspan="2">: {{ Carbon\Carbon::parse($data_perdin->tgl_berangkat)->isoFormat('dddd') }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Tanggal</td>
+                <td>: {{ Carbon\Carbon::parse($data_perdin->tgl_berangkat)->isoFormat('D MMMM YYYY') }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Tempat</td>
+                <td colspan="2">: {{ $data_perdin->kabupaten->nama }}</td>
+            </tr>
 		</table>
+
+        <p style="text-indent: 60px;">Demikian Surat Perintah Tugas ini dibuat, untuk dilaksanakan dengan penuh rasa tanggung jawab.</p>
 
 		<table style="width: 100%;">
 			<tr>
@@ -139,11 +171,11 @@
 						<div style="display: inline-block; text-align: left;">
 							<p style="margin-top: 20px;">
 								Serang,  {{ Carbon\Carbon::parse($data_perdin->tgl_berangkat)->isoFormat('D MMMM YYYY') }} <br>
-								{{ implode(' ', array_slice(explode(' ', $data_perdin->tanda_tangan->pegawai->jabatan->nama), 0, 2)) }}
+								{{ $data_perdin->tanda_tangan->pegawai->jabatan->nama }}
 							</p>
 							<img src="data:image/png;base64,{{ $data_perdin->tanda_tangan->fileTtdEncoded }}" alt="{{ $data_perdin->tanda_tangan->nama }}" height="70">
-							<p style="text-decoration: underline; font-weight: bold;">{{ $data_perdin->tanda_tangan->pegawai->nama }}</p>
-							<p>NIP.{{ $data_perdin->tanda_tangan->pegawai->nip }}</p>
+							<p>{{ $data_perdin->tanda_tangan->pegawai->nama }}</p>
+							<p>NIP {{ $data_perdin->tanda_tangan->pegawai->nip }}</p>
 						</div>
 					</div>
 				</td>

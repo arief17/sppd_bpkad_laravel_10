@@ -75,12 +75,33 @@
 								</table>
 							</div>
 						</section>
+						<h3>Latar Belakang</h3>
+						<section>
+							<div class="table-responsive mg-t-20">
+								<table class="table mg-b-0 text-md-nowrap">
+									<tr>
+										<td class="fw-bold">B. Latar Belakang</td>
+									</tr>
+									<tr>
+										<td>
+											<textarea name="latar_belakang" class="form-control @error('latar_belakang') is-invalid @enderror" rows="3">{{ old('latar_belakang', $laporan_perdin->latar_belakang) }}</textarea>
+											@error('latar_belakang')
+											<div class="invalid-feedback">
+												{{ $message }}
+											</div>
+											@enderror
+										</td>
+									</tr>
+									<tr><td></td></tr>
+								</table>
+							</div>
+						</section>
 						<h3>Maksud & Tujuan</h3>
 						<section>
 							<div class="table-responsive mg-t-20">
 								<table class="table mg-b-0 text-md-nowrap">
 									<tr>
-										<td class="fw-bold">B. Madsud dan Tujuan</td>
+										<td class="fw-bold">C. Madsud dan Tujuan</td>
 									</tr>
 									<tr>
 										<td>
