@@ -150,7 +150,7 @@
 			<tr>
 				<td style="text-align: center; border-right: 1px solid black;">
 					MENGETAHUI/MENYETUJUI <br>
-					PENGGUNA ANGGARAN
+					KUASA PENGGUNA ANGGARAN
 				</td>
 				<td style="text-align: center; border-right: 1px solid black;">
 					BENDAHARA PENGELUARAN
