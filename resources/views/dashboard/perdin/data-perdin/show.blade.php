@@ -74,7 +74,7 @@
 							<td>{{ $data_perdin->perihal }}</td>
 						</tr>
 						<tr>
-							<th style="white-space: nowrap; width: 1%;">Petugas</th>
+							<th style="white-space: nowrap; width: 1%;">Pegawai</th>
 							<td>{{ $data_perdin->pegawai_diperintah->nama }}</td>
 						</tr>
 						<tr>

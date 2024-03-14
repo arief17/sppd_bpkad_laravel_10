@@ -100,6 +100,11 @@ class DataPerdin extends Model
         return $this->belongsTo(TandaTangan::class, 'pptk_id');
     }
 
+    public function pa_kpa(): BelongsTo
+    {
+        return $this->belongsTo(TandaTangan::class, 'pa_kpa_id');
+    }
+
     public function alat_angkut(): BelongsTo
     {
         return $this->belongsTo(AlatAngkut::class, 'alat_angkut_id');

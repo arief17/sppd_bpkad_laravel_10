@@ -49,7 +49,7 @@
 								</td>
 								<td>{{ $tanda_tangan->pegawai->nama }}</td>
 								<td>{{ $tanda_tangan->pegawai->jabatan->nama }}</td>
-								<td>{{ $tanda_tangan->jenis_ttd == 'pemberi_perintah' ? 'Pejabat Pemberi Perintah' : 'Petugas Pelaksana Teknis Kegiatan' }}</td>
+								<td>{{ $tanda_tangan->jenis_ttd_f }}</td>
 								<td>{{ $tanda_tangan->status ? 'Aktif' : 'Tidak Aktif' }}</td>
 							</tr>
 							@endforeach

@@ -40,12 +40,11 @@
 						<td style="white-space: nowrap; width: 1%;">Pada Tanggal</td>
 						<td>: {{ Carbon\Carbon::parse($data_perdin->tgl_berangkat)->isoFormat('D MMMM YYYY') }}</td>
 					</tr>
-					<tr>
+					{{-- <tr>
 						<td colspan="3" style="white-space: nowrap; text-transform: capitalize;">Kepala {{ strtolower($data_perdin->pptk->pegawai->bidang->nama ?? '') }}</td>
-					</tr>
+					</tr> --}}
 					<tr>
-						<td></td>
-						<td colspan="2">Pejabat Pelaksana Teknis Kegiatan</td>
+						<td colspan="3">Selaku Pejabat Pelaksana Teknis Kegiatan</td>
 					</tr>
 					<tr>
 						<td></td>

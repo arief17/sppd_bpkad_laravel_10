@@ -75,7 +75,7 @@
 					<hr style="border-top: 3px solid black" class="my-4">
 
 					<div class="row row-sm">
-						<div class="col-sm-6">
+						<div class="col-sm-4">
 							<div class="form-group">
 								<label for="tanda_tangan_id" class="form-label">Pejabat yang memberi perintah <span class="text-danger">*</span></label>
 								<select name="tanda_tangan_id" id="tanda_tangan_id" class="form-control form-select select2 @error('tanda_tangan_id') is-invalid @enderror">
@@ -93,7 +93,7 @@
 								@enderror
 							</div>
 						</div>
-						<div class="col-sm-6">
+						<div class="col-sm-4">
 							<div class="form-group">
 								<label for="pptk_id" class="form-label">PPTK <span class="text-danger">*</span></label>
 								<select name="pptk_id" id="pptk_id" class="form-control form-select select2 @error('pptk_id') is-invalid @enderror">
@@ -105,6 +105,24 @@
 									@endforeach
 								</select>
 								@error('pptk_id')
+								<div class="invalid-feedback">
+									{{ $message }}
+								</div>
+								@enderror
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label for="pa_kpa_id" class="form-label">KPA/PA <span class="text-danger">*</span></label>
+								<select name="pa_kpa_id" id="pa_kpa_id" class="form-control form-select select2 @error('pa_kpa_id') is-invalid @enderror">
+									<option value="">Pilih KPA/PA</option>
+									@foreach ($ttd_pa_kpas as $ttd_pa_kpa)
+									<option value="{{ $ttd_pa_kpa->id }}" @selected(old('pa_kpa_id') == $ttd_pa_kpa->id)>
+										{{ $ttd_pa_kpa->pegawai->nama }} | {{ $ttd_pa_kpa->jenis_ttd_f }}
+									</option>
+									@endforeach
+								</select>
+								@error('pa_kpa_id')
 								<div class="invalid-feedback">
 									{{ $message }}
 								</div>

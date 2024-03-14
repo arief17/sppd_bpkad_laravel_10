@@ -58,8 +58,7 @@
         <div style="text-align: center; margin-bottom: 30px">
             <p style="margin: 0; font-size: 20px;">SURAT PERINTAH</p>
             <p style="margin: 0;">
-                <span style="padding-right: 100px;">NOMOR : 900.1.7.2/</span>
-                /2024
+                <span style="padding-right: 100px;">NOMOR : </span> 2024
             </p>
 		</div>
 

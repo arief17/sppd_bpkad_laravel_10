@@ -101,13 +101,13 @@
 					<td style="width: 1%; border-right: 0; border-bottom: 0; border-top: 0;">c. </td>
 					<td style="border-left: 0; border-bottom: 0; border-top: 0;">Tingkat Biaya Perjalanan Dinas</td>
 					<td style="width: 1%; border-right: 0; border-bottom: 0; border-top: 0;">c. </td>
-					<td colspan="2" style="border-left: 0; border-bottom: 0; border-top: 0;">Uang Harian : {{ $data_perdin->pegawai_diperintah->kwitansi_perdins()->first()->pivot->uang_harian }}</td>
+					<td colspan="2" style="border-left: 0; border-bottom: 0; border-top: 0;">Uang Harian : Rp. {{ number_format($data_perdin->pegawai_diperintah->kwitansi_perdins()->first()->pivot->uang_harian, 0, '.', '.') }}</td>
 				</tr>
 				<tr>
 					<td style="width: 1%; border-right: 0; border-top: 0;"></td>
 					<td style="border-left: 0; border-top: 0;"></td>
 					<td style="width: 1%; border-right: 0; border-top: 0;"></td>
-					<td colspan="2" style="border-left: 0; border-top: 0;">Transport : {{ $data_perdin->pegawai_diperintah->kwitansi_perdins()->first()->pivot->uang_transport }}</td>
+					<td colspan="2" style="border-left: 0; border-top: 0;">Transport : Rp. {{ number_format($data_perdin->pegawai_diperintah->kwitansi_perdins()->first()->pivot->uang_transport, 0, '.', '.') }}</td>
 				</tr>
 
 				<tr>
@@ -214,11 +214,13 @@
                     </table>
 
                     <div style="padding: 3px;">
-                        <p>Pengguna Anggaran/Kuasa Pengguna Anggaran</p>
-                        <img src="data:image/png;base64,{{ $data_perdin->tanda_tangan->fileTtdEncoded }}" alt="{{ $data_perdin->tanda_tangan->nama }}" height="70">
-                        <p>{{ $data_perdin->tanda_tangan->pegawai->nama }}</p>
-                        <p>{{ $data_perdin->tanda_tangan->pegawai->pangkat->nama ?? '' }}</p>
-                        <p>NIP {{ $data_perdin->tanda_tangan->pegawai->nip ?? '' }}</p>
+						@if ($data_perdin->pa_kpa)
+                        <p>{{ ($data_perdin->pa_kpa->jenis_ttd == 'pengguna_anggaran') ? 'Pengguna Anggaran' : 'Kuasa Pengguna Anggaran' }}</p>
+                        <img src="data:image/png;base64,{{ $data_perdin->pa_kpa->fileTtdEncoded }}" alt="{{ $data_perdin->pa_kpa->nama }}" height="70">
+                        <p>{{ $data_perdin->pa_kpa->pegawai->nama }}</p>
+                        <p>{{ $data_perdin->pa_kpa->pegawai->pangkat->nama ?? '' }}</p>
+                        <p>NIP {{ $data_perdin->pa_kpa->pegawai->nip ?? '' }}</p>
+						@endif
                     </div>
                 </td>
 			</tr>

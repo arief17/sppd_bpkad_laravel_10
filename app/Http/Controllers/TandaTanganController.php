@@ -28,7 +28,9 @@ class TandaTanganController extends Controller
     {
         $jenis_ttds = [
             'pemberi_perintah' => 'Pejabat Pemberi Perintah',
-            'pptk' => 'Petugas Pelaksana Teknis Kegiatan'
+            'pptk' => 'Petugas Pelaksana Teknis Kegiatan',
+            'pengguna_anggaran' => 'Pengguna Anggaran',
+            'kuasa_pengguna_anggaran' => 'Kuasa Pengguna Anggaran'
         ];
 
         return view('dashboard.master.tanda-tangan.create', [
@@ -79,7 +81,9 @@ class TandaTanganController extends Controller
     {
         $jenis_ttds = [
             'pemberi_perintah' => 'Pejabat Pemberi Perintah',
-            'pptk' => 'Petugas Pelaksana Teknis Kegiatan'
+            'pptk' => 'Petugas Pelaksana Teknis Kegiatan',
+            'pengguna_anggaran' => 'Pengguna Anggaran',
+            'kuasa_pengguna_anggaran' => 'Kuasa Pengguna Anggaran'
         ];
 
         return view('dashboard.master.tanda-tangan.edit', [

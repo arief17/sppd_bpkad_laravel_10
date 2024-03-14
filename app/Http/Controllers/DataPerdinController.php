@@ -161,6 +161,7 @@ class DataPerdinController extends Controller
 
         $ttd_pemberi_perintah = TandaTangan::where('jenis_ttd', 'pemberi_perintah')->get();
         $ttd_pptk = TandaTangan::where('jenis_ttd', 'pptk')->get();
+        $ttd_pa_kpa = TandaTangan::whereIn('jenis_ttd', ['pengguna_anggaran', 'kuasa_pengguna_anggaran'])->get();
 
         return view('dashboard.perdin.data-perdin.create', [
             'title' => 'Tambah Data Perdin',
@@ -168,6 +169,7 @@ class DataPerdinController extends Controller
             'jenis_perdins' => JenisPerdin::all(),
             'ttd_pemberi_perintahs' => $ttd_pemberi_perintah,
             'ttd_pptks' => $ttd_pptk,
+            'ttd_pa_kpas' => $ttd_pa_kpa,
             'lamas' => Lama::all(),
             'pegawais' => $pegawais,
             'pptks' => Pegawai::where('pptk', '1')->get(),
@@ -188,6 +190,7 @@ class DataPerdinController extends Controller
                 'perihal' => 'nullable',
                 'tanda_tangan_id' => 'required',
                 'pptk_id' => 'required',
+                'pa_kpa_id' => 'required',
                 'maksud' => 'required',
                 'lama' => 'required',
                 'tgl_berangkat' => 'required|date',
@@ -341,6 +344,7 @@ class DataPerdinController extends Controller
 
         $ttd_pemberi_perintah = TandaTangan::where('jenis_ttd', 'pemberi_perintah')->get();
         $ttd_pptk = TandaTangan::where('jenis_ttd', 'pptk')->get();
+        $ttd_pa_kpa = TandaTangan::whereIn('jenis_ttd', ['pengguna_anggaran', 'kuasa_pengguna_anggaran'])->get();
 
         return view('dashboard.perdin.data-perdin.edit', [
             'title' => 'Perbarui Data Perdin',
@@ -348,6 +352,7 @@ class DataPerdinController extends Controller
             'jenis_perdins' => JenisPerdin::all(),
             'ttd_pemberi_perintahs' => $ttd_pemberi_perintah,
             'ttd_pptks' => $ttd_pptk,
+            'ttd_pa_kpas' => $ttd_pa_kpa,
             'lamas' => Lama::all(),
             'pegawais' => $pegawais,
             'data_perdin' => $dataPerdin,
@@ -368,6 +373,7 @@ class DataPerdinController extends Controller
                 'perihal' => 'nullable',
                 'tanda_tangan_id' => 'required',
                 'pptk_id' => 'required',
+                'pa_kpa_id' => 'required',
                 'maksud' => 'required',
                 'lama' => 'required',
                 'tgl_berangkat' => 'required|date',

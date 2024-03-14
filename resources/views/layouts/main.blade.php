@@ -238,12 +238,12 @@
 												</a>
 											</li>
 											<li>
-												<a class="sub-side-menu__item {{ request()->routeIs('data-perdin.index') && request('status') == 'belum_bayar' ? 'active' : '' }}" href="{{ route('data-perdin.index', 'belum_bayar') }}">Belum Bayar
+												<a class="sub-side-menu__item {{ request()->routeIs('data-perdin.index') && request('status') == 'belum_bayar' ? 'active' : '' }}" href="{{ route('data-perdin.index', 'belum_bayar') }}">Belum Administrasi
 													<span class="badge bg-danger text-light" id="bg-side-text">{{ $totalBelumBayar ?? 0 }}</span>
 												</a>
 											</li>
 											<li>
-												<a class="sub-side-menu__item {{ request()->routeIs('data-perdin.index') && request('status') == 'sudah_bayar' ? 'active' : '' }}" href="{{ route('data-perdin.index', 'sudah_bayar') }}">Sudah Bayar
+												<a class="sub-side-menu__item {{ request()->routeIs('data-perdin.index') && request('status') == 'sudah_bayar' ? 'active' : '' }}" href="{{ route('data-perdin.index', 'sudah_bayar') }}">Sudah Administrasi
 													<span class="badge bg-success text-light" id="bg-side-text">{{ $totalSudahBayar ?? 0 }}</span>
 												</a>
 											</li>

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('no_spt')->nullable();
             $table->unsignedBigInteger('tanda_tangan_id');
             $table->unsignedBigInteger('pptk_id');
+            $table->unsignedBigInteger('pa_kpa_id');
             $table->text('maksud');
             $table->integer('lama');
             $table->date('tgl_berangkat');

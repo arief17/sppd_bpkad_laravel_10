@@ -16,7 +16,7 @@
 		}
 	</style>
 </head>
-<body style="font-family: Times, serif; margin: 30px;">
+<body style="font-family: Times, serif; margin: 20px;">
     <table>
         <tr>
             <td>
@@ -43,10 +43,10 @@
 	margin: 10px 0 0 0;
 	">
 
-	<div style="margin: 30px 60px 0 60px;">
+	<div style="margin: 20px 60px 0 60px;">
 
-		<div style="text-align: center; margin-bottom: 30px">
-            <p style="margin: 0; font-size: 20px;">SURAT TUGAS</p>
+		<div style="text-align: center; margin-bottom: 20px">
+            <p style="margin: 0; font-size: 20px; font-weight: bold; text-decoration: underline;">SURAT TUGAS</p>
             <p style="margin: 0;">
                 <span style="padding-right: 150px;">Nomor : </span> 2024
             </p>
@@ -58,21 +58,19 @@
                 <td>:</td>
                 <td colspan="3">
 					@if ($data_perdin->surat_dari)
-					<span style="text-transform: capitalize">
-						Surat undangan No {{ $data_perdin->nomor_surat }}
-                        Tanggal {{ Carbon\Carbon::parse($data_perdin->tgl_surat)->isoFormat('D MMMM YYYY') }}
-                        tentang {{ $data_perdin->perihal }}/DPA Tahun Anggaran 2024
-                        No {{ $data_perdin->nomor_surat }}
-                        Tanggal {{ Carbon\Carbon::parse($data_perdin->tgl_surat)->isoFormat('D MMMM YYYY') }}
-                        {{ $data_perdin->kwitansi_perdin->kegiatan_sub ? 'Kegiatan' . $data_perdin->kwitansi_perdin->kegiatan_sub->kegiatan->nama . 'Sub Kegiatan' . $data_perdin->kwitansi_perdin->kegiatan_sub->nama : '' }},
+					<span>
+						Surat undangan No {{ $data_perdin->nomor_surat }}&nbsp;
+                        Tanggal {{ Carbon\Carbon::parse($data_perdin->tgl_surat)->isoFormat('D MMMM YYYY') }}&nbsp;
+                        tentang {{ $data_perdin->perihal }}&nbsp;
+                        {{-- dalam {{ $data_perdin->kwitansi_perdin->kegiatan_sub ? 'Kegiatan ' . strtolower($data_perdin->kwitansi_perdin->kegiatan_sub->kegiatan->nama) . ' Sub Kegiatan ' . strtolower($data_perdin->kwitansi_perdin->kegiatan_sub->nama) : '' }},&nbsp; --}}
 					</span>
 					@endif
-                    Maka <span style="text-transform: capitalize">{{ strtolower($data_perdin->tanda_tangan->pegawai->jabatan->nama) }}</span>
+                    Dokumen Pelaksanaan Anggaran Satuan Kerja Perangkat Daerah (DPA-SKPD) Badan Pengelolaan Keuangan dan Aset Daerah Provinsi Banten Tahun Anggaran 2024.
 				</td>
             </tr>
             <tr>
                 <td colspan="5">
-                    <p style="text-align: center; padding: 30px 0px; font-size: 20px;">MEMERINTAHKAN:</p>
+                    <p style="text-align: center; padding: 20px 0px; font-size: 20px;">MEMERINTAHKAN:</p>
                 </td>
             </tr>
 			<tr>
@@ -101,7 +99,7 @@
 				<td></td>
 				<td></td>
 				<td>Jabatan</td>
-				<td style="padding-bottom: 30px">: {{ $data_perdin->pegawai_diperintah->jabatan->nama ?? '-' }}</td>
+				<td style="padding-bottom: 20px">: {{ $data_perdin->pegawai_diperintah->jabatan->nama ?? '-' }}</td>
 			</tr>
 			@foreach ($data_perdin->pegawai_mengikuti as $pegawai)
 			<tr>
@@ -130,37 +128,16 @@
 				<td></td>
 				<td></td>
 				<td>Jabatan</td>
-				<td style="padding-bottom: 30px">: {{ $pegawai->jabatan->nama ?? '-' }}</td>
+				<td style="padding-bottom: 20px">: {{ $pegawai->jabatan->nama ?? '-' }}</td>
 			</tr>
 			@endforeach
 
 			<tr>
                 <td>Untuk</td>
 				<td>:</td>
-				<td colspan="3">Melaksanakan Koordinasi {{ $data_perdin->maksud }} yang dilaksanakan pada:</td>
+				<td colspan="3">Melaksanakan {{ $data_perdin->maksud }}</td>
 			</tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>Hari</td>
-                <td colspan="2">: {{ Carbon\Carbon::parse($data_perdin->tgl_berangkat)->isoFormat('dddd') }}</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>Tanggal</td>
-                <td>: {{ Carbon\Carbon::parse($data_perdin->tgl_berangkat)->isoFormat('D MMMM YYYY') }}</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>Tempat</td>
-                <td colspan="2">: {{ $data_perdin->kabupaten->nama }}</td>
-            </tr>
 		</table>
-
-        <p style="text-indent: 60px;">Demikian Surat Perintah Tugas ini dibuat, untuk dilaksanakan dengan penuh rasa tanggung jawab.</p>
 
 		<table style="width: 100%;">
 			<tr>
@@ -168,12 +145,13 @@
 				<td>
 					<div style="text-align: center;">
 						<div style="display: inline-block; text-align: left;">
-							<p style="margin-top: 20px;">
+							<p>
 								Serang,  {{ Carbon\Carbon::parse($data_perdin->tgl_berangkat)->isoFormat('D MMMM YYYY') }} <br>
-								{{ $data_perdin->tanda_tangan->pegawai->jabatan->nama }}
+								<b style="text-transform: capitalize">{{ strtolower($data_perdin->tanda_tangan->pegawai->jabatan->nama) }}</b>
 							</p>
 							<img src="data:image/png;base64,{{ $data_perdin->tanda_tangan->fileTtdEncoded }}" alt="{{ $data_perdin->tanda_tangan->nama }}" height="70">
-							<p>{{ $data_perdin->tanda_tangan->pegawai->nama }}</p>
+							<p style="text-decoration: underline; font-weight: bold">{{ $data_perdin->tanda_tangan->pegawai->nama }}</p>
+                            <p>{{ $data_perdin->tanda_tangan->pegawai->pangkat->nama ?? '' }}</p>
 							<p>NIP {{ $data_perdin->tanda_tangan->pegawai->nip }}</p>
 						</div>
 					</div>
@@ -210,10 +188,10 @@
 	margin: 10px 0 0 0;
 	">
 
-	<div style="margin: 30px 60px 0 60px;">
+	<div style="margin: 20px 60px 0 60px;">
 
-		<div style="text-align: center; margin-bottom: 30px">
-            <p style="margin: 0; font-size: 20px;">SURAT TUGAS</p>
+		<div style="text-align: center; margin-bottom: 20px">
+            <p style="margin: 0; font-size: 20px; font-weight: bold; text-decoration: underline;">SURAT TUGAS</p>
             <p style="margin: 0;">
                 <span style="padding-right: 150px;">Nomor : </span> 2024
             </p>
@@ -225,21 +203,19 @@
                 <td>:</td>
                 <td colspan="3">
 					@if ($data_perdin->surat_dari)
-					<span style="text-transform: capitalize">
-						Surat undangan No {{ $data_perdin->nomor_surat }}
-                        Tanggal {{ Carbon\Carbon::parse($data_perdin->tgl_surat)->isoFormat('D MMMM YYYY') }}
-                        tentang {{ $data_perdin->perihal }}/DPA Tahun Anggaran 2024
-                        No {{ $data_perdin->nomor_surat }}
-                        Tanggal {{ Carbon\Carbon::parse($data_perdin->tgl_surat)->isoFormat('D MMMM YYYY') }}
-                        {{ $data_perdin->kwitansi_perdin->kegiatan_sub ? 'Kegiatan' . $data_perdin->kwitansi_perdin->kegiatan_sub->kegiatan->nama . 'Sub Kegiatan' . $data_perdin->kwitansi_perdin->kegiatan_sub->nama : '' }},
+					<span>
+						Surat undangan No {{ $data_perdin->nomor_surat }}&nbsp;
+                        Tanggal {{ Carbon\Carbon::parse($data_perdin->tgl_surat)->isoFormat('D MMMM YYYY') }}&nbsp;
+                        tentang {{ $data_perdin->perihal }}&nbsp;
+                        {{-- dalam {{ $data_perdin->kwitansi_perdin->kegiatan_sub ? 'Kegiatan ' . strtolower($data_perdin->kwitansi_perdin->kegiatan_sub->kegiatan->nama) . ' Sub Kegiatan ' . strtolower($data_perdin->kwitansi_perdin->kegiatan_sub->nama) : '' }},&nbsp; --}}
 					</span>
 					@endif
-                    Maka <span style="text-transform: capitalize">{{ strtolower($data_perdin->tanda_tangan->pegawai->jabatan->nama) }}</span>
+                    Dokumen Pelaksanaan Anggaran Satuan Kerja Perangkat Daerah (DPA-SKPD) Badan Pengelolaan Keuangan dan Aset Daerah Provinsi Banten Tahun Anggaran 2024.
 				</td>
             </tr>
             <tr>
                 <td colspan="5">
-                    <p style="text-align: center; padding: 30px 0px; font-size: 20px;">MEMERINTAHKAN:</p>
+                    <p style="text-align: center; padding: 20px 0px; font-size: 20px;">MEMERINTAHKAN:</p>
                 </td>
             </tr>
 			<tr>
@@ -268,7 +244,7 @@
 				<td></td>
 				<td></td>
 				<td>Jabatan</td>
-				<td style="padding-bottom: 30px">: {{ $data_perdin->pegawai_diperintah->jabatan->nama ?? '-' }}</td>
+				<td style="padding-bottom: 20px">: {{ $data_perdin->pegawai_diperintah->jabatan->nama ?? '-' }}</td>
 			</tr>
 			@foreach ($data_perdin->pegawai_mengikuti as $pegawai)
 			<tr>
@@ -297,37 +273,16 @@
 				<td></td>
 				<td></td>
 				<td>Jabatan</td>
-				<td style="padding-bottom: 30px">: {{ $pegawai->jabatan->nama ?? '-' }}</td>
+				<td style="padding-bottom: 20px">: {{ $pegawai->jabatan->nama ?? '-' }}</td>
 			</tr>
 			@endforeach
 
 			<tr>
                 <td>Untuk</td>
 				<td>:</td>
-				<td colspan="3">Melaksanakan Koordinasi {{ $data_perdin->maksud }} yang dilaksanakan pada:</td>
+				<td colspan="3">Melaksanakan {{ $data_perdin->maksud }}</td>
 			</tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>Hari</td>
-                <td colspan="2">: {{ Carbon\Carbon::parse($data_perdin->tgl_berangkat)->isoFormat('dddd') }}</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>Tanggal</td>
-                <td>: {{ Carbon\Carbon::parse($data_perdin->tgl_berangkat)->isoFormat('D MMMM YYYY') }}</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>Tempat</td>
-                <td colspan="2">: {{ $data_perdin->kabupaten->nama }}</td>
-            </tr>
 		</table>
-
-        <p style="text-indent: 60px;">Demikian Surat Perintah Tugas ini dibuat, untuk dilaksanakan dengan penuh rasa tanggung jawab.</p>
 
 		<table style="width: 100%; margin-top: 20px;">
 			<tr>
@@ -338,8 +293,8 @@
                         </tr>
                         <tr>
                             <td style="border: 1px solid black;">Sekretaris Badan</td>
-                            <td style="border: 1px solid black;">:</td>
-                            <td style="width: 50%; border: 1px solid black;"></td>
+                            <td style="width: 1%; border: 1px solid black;">:</td>
+                            <td style="width: 40%; border: 1px solid black;"></td>
                         </tr>
                         <tr>
                             <td style="border: 1px solid black;">Ka.Bidang Perencanaan Anggaran Daerah</td>
@@ -358,10 +313,10 @@
 						<div style="display: inline-block; text-align: left;">
 							<p>
 								Serang,  {{ Carbon\Carbon::parse($data_perdin->tgl_berangkat)->isoFormat('D MMMM YYYY') }} <br>
-								{{ $data_perdin->tanda_tangan->pegawai->jabatan->nama }}
+								<b style="text-transform: capitalize">{{ strtolower($data_perdin->tanda_tangan->pegawai->jabatan->nama) }}</b>
 							</p>
 							<img src="data:image/png;base64,{{ $data_perdin->tanda_tangan->fileTtdEncoded }}" alt="{{ $data_perdin->tanda_tangan->nama }}" height="70">
-							<p>{{ $data_perdin->tanda_tangan->pegawai->nama }}</p>
+							<p style="text-decoration: underline; font-weight: bold">{{ $data_perdin->tanda_tangan->pegawai->nama }}</p>
                             <p>{{ $data_perdin->tanda_tangan->pegawai->pangkat->nama ?? '' }}</p>
 							<p>NIP {{ $data_perdin->tanda_tangan->pegawai->nip }}</p>
 						</div>

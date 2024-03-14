@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->unsignedBigInteger('pegawai_id');
             $table->boolean('status')->default('1');
-            $table->enum('jenis_ttd', ['pemberi_perintah', 'pptk']);
+            $table->enum('jenis_ttd', ['pemberi_perintah', 'pptk', 'pengguna_anggaran', 'kuasa_pengguna_anggaran']);
             $table->string('file_ttd')->nullable();
             $table->unsignedBigInteger('author_id');
             $table->timestamps();
