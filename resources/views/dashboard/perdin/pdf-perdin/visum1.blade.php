@@ -26,7 +26,7 @@
             <td style="width: 100%;">
                 <div style="text-align: center;">
                     <p style="font-size: x-large;">PEMERINTAH PROVINSI BANTEN</p>
-                    <h2>BADAN PENGELOLAAN KEUANGAN DAN ASET DAERAH</h2>
+                    <h2 style="font-size: 23px">BADAN PENGELOLAAN KEUANGAN DAN ASET DAERAH</h2>
                     <small>
                         Kawasan Pusat Pemerintahan Provinsi Banten (KP3B) <br>
                         Jalan Syech Nawawi Al Bantani, Palima Serang Banten <br>
