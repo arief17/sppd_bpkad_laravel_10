@@ -31,8 +31,16 @@
 									<a class="modal-effect btn btn-secondary btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#lap-bendahara-{{ $kwitansi_perdin->id }}" onclick="loadContent('{{ route('lap-bendahara-pdf', $kwitansi_perdin->id) }}', 'lap_bendahara-iframe-{{ $kwitansi_perdin->id }}')">
 										Laporan Bendahara
 									</a>
+									<a class="modal-effect btn btn-secondary btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#rincian-sppd-{{ $kwitansi_perdin->id }}" onclick="loadContent('{{ route('rincian-sppd-pdf', $kwitansi_perdin->id) }}', 'rincian_sppd-iframe-{{ $kwitansi_perdin->id }}')">
+										Rincian SPPD
+									</a>
+									<a class="modal-effect btn btn-secondary btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#sptjb-{{ $kwitansi_perdin->id }}" onclick="loadContent('{{ route('sptjb-pdf', $kwitansi_perdin->id) }}', 'sptjb-iframe-{{ $kwitansi_perdin->id }}')">
+										SPTJB
+									</a>
 									@else
 									<button class="not-bayar btn btn-danger btn-sm">Laporan Bendahara</button>
+									<button class="not-bayar btn btn-danger btn-sm">Rincian SPPD</button>
+									<button class="not-bayar btn btn-danger btn-sm">SPTJB</button>
 									@endif
 								</td>
 								<td>{{ $kwitansi_perdin->data_perdin->pegawai_diperintah->nama }}</td>
@@ -40,6 +48,8 @@
 								<td>{{ $kwitansi_perdin->data_perdin->tgl_berangkat }}</td>
 								@if ($kwitansi_perdin->data_perdin->status->kwitansi)
 								@include('dashboard.perdin.status-perdin.lap_bendahara')
+								@include('dashboard.perdin.status-perdin.rincian_sppd')
+								@include('dashboard.perdin.status-perdin.sptjb')
 								@endif
 							</tr>
 							@endforeach

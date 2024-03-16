@@ -139,6 +139,42 @@ class PerdinPdfController extends Controller
         return $pdf->stream();
     }
 
+    public function rincian_sppd($id)
+    {
+        App::setLocale('id');
+        $kwitansi_perdin = KwitansiPerdin::where('id', $id)->first();
+        $bendahara = Bendahara::latest()->first();
+
+        $imgLogo = base64_encode(file_get_contents(public_path('assets/img/logo-banten2.png')));
+
+        $pdf = Pdf::loadView('dashboard.perdin.pdf-perdin.rincian_sppd', [
+            'kwitansi_perdin' => $kwitansi_perdin,
+            'imgLogo' => $imgLogo,
+            'bendahara' => $bendahara,
+        ]);
+
+        $pdf->setPaper(array(0,0,609.4488,935.433), 'portrait');
+
+        return $pdf->stream();
+    }
+
+    public function sptjb($id)
+    {
+        App::setLocale('id');
+        $kwitansi_perdin = KwitansiPerdin::where('id', $id)->first();
+
+        $imgLogo = base64_encode(file_get_contents(public_path('assets/img/logo-banten2.png')));
+
+        $pdf = Pdf::loadView('dashboard.perdin.pdf-perdin.sptjb', [
+            'kwitansi_perdin' => $kwitansi_perdin,
+            'imgLogo' => $imgLogo,
+        ]);
+
+        $pdf->setPaper(array(0,0,609.4488,935.433), 'portrait');
+
+        return $pdf->stream();
+    }
+
     public function ttd_visum($nama, $nip, $jabatan)
     {
         $pdf = Pdf::loadView('dashboard.perdin.pdf-perdin.ttd_visum', [

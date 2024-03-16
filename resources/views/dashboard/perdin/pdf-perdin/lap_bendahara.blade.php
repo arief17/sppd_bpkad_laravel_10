@@ -56,10 +56,7 @@
         </table>
 
         <div style="text-align: center; margin-bottom: 30px">
-            <p style="margin: 0; font-size: 20px;">SURAT PERINTAH</p>
-            <p style="margin: 0;">
-                <span style="padding-right: 100px;">NOMOR : </span> 2024
-            </p>
+            <p style="margin: 0; font-size: 20px; font-weight: bold; text-decoration: underline;">SURAT PERINTAH MEMBAYAR</p>
 		</div>
 
         <table style="margin-top: 20px;">
@@ -71,9 +68,9 @@
         </table>
         <table style="margin-bottom: 20px;">
             <tr>
-                <td>Terbilang</td>
+                <td>Dengan Huruf</td>
                 <td>:</td>
-                <td style="font-weight: bold; font-style: italic;">{{ ucwords($kwitansi_perdin->terbilang($total_uang)) }}</td>
+                <td>{{ ucwords($kwitansi_perdin->terbilang($total_uang)) }} Rupiah</td>
             </tr>
             <tr>
                 <td>Kepada</td>
@@ -84,23 +81,15 @@
                 <td>Keperluan</td>
                 <td>:</td>
                 <td>
-                    Belanja {{ $kwitansi_perdin->data_perdin->jenis_perdin->nama }} ke {{ $kwitansi_perdin->data_perdin->lokasi }}, tanggal {{ Carbon\Carbon::parse($kwitansi_perdin->data_perdin->tgl_berangkat)->isoFormat('D MMMM YYYY') }}
+                    Belanja {{ $kwitansi_perdin->data_perdin->jenis_perdin->nama }} dalam rangka {{ $kwitansi_perdin->data_perdin->maksud }} ke {{ $kwitansi_perdin->data_perdin->lokasi }} tanggal {{ Carbon\Carbon::parse($kwitansi_perdin->data_perdin->tgl_berangkat)->isoFormat('D MMMM YYYY') }}, sesuai SPT No: {{ $kwitansi_perdin->data_perdin->no_spt }}
+                    <br><br>
+                    <p>
+                        Kegiatan: {{ $kwitansi_perdin->kegiatan_sub->kegiatan->nama }}
+                    </p>
+                    <p>
+                        Sub Kegiatan: {{ $kwitansi_perdin->kegiatan_sub->nama }}
+                    </p>
                 </td>
-            </tr>
-            <tr>
-                <td>Kegiatan</td>
-                <td>:</td>
-                <td>{{ $kwitansi_perdin->kegiatan_sub->kegiatan->nama }}</td>
-            </tr>
-            <tr>
-                <td>Sub Kegiatan</td>
-                <td>:</td>
-                <td>{{ $kwitansi_perdin->kegiatan_sub->nama }}</td>
-            </tr>
-            <tr>
-                <td style="white-space: nowrap;">Kode Rekening</td>
-                <td>:</td>
-                <td>{{ $kwitansi_perdin->no_rek }}</td>
             </tr>
         </table>
 
@@ -110,14 +99,16 @@
 				<td>
 					<div style="text-align: center;">
 						<div style="display: inline-block; text-align: left;">
+                            @if ($data_perdin->pa_kpa)
 							<p style="margin-top: 20px;">
-								<span style="padding-right: 100px;">Serang,</span> {{ now()->isoFormat('YYYY') }} <br>
-								Pengguna Anggaran
+								<span style="padding-right: 50px;">Serang,</span> {{ now()->isoFormat('MMMM YYYY') }} <br>
+                                <p>{{ ($data_perdin->pa_kpa->jenis_ttd == 'pengguna_anggaran') ? 'Pengguna Anggaran' : 'Kuasa Pengguna Anggaran' }}</p>
 							</p>
-							<img src="data:image/png;base64,{{ $kwitansi_perdin->data_perdin->tanda_tangan->fileTtdEncoded }}" alt="{{ $kwitansi_perdin->data_perdin->tanda_tangan->nama }}" height="70">
-							<p>{{ $kwitansi_perdin->data_perdin->tanda_tangan->pegawai->nama }}</p>
-                            <p>{{ $kwitansi_perdin->data_perdin->tanda_tangan->pegawai->pangkat->nama ?? '' }}</p>
-							<p>NIP {{ $kwitansi_perdin->data_perdin->tanda_tangan->pegawai->nip }}</p>
+							<img src="data:image/png;base64,{{ $kwitansi_perdin->data_perdin->pa_kpa->fileTtdEncoded }}" alt="{{ $kwitansi_perdin->data_perdin->pa_kpa->nama }}" height="70">
+							<p>{{ $kwitansi_perdin->data_perdin->pa_kpa->pegawai->nama }}</p>
+                            <p>{{ $kwitansi_perdin->data_perdin->pa_kpa->pegawai->pangkat->nama ?? '' }}</p>
+							<p>NIP {{ $kwitansi_perdin->data_perdin->pa_kpa->pegawai->nip }}</p>
+                            @endif
 						</div>
 					</div>
 				</td>
