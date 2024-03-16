@@ -190,7 +190,7 @@
 	function updateVisibility(selectedJabatan) {
 		let jabatan = selectedJabatan.trim().toLowerCase();
 
-		if (jabatan.includes('kepala dinas')) {
+		if (jabatan.includes('kepala badan')) {
 			$('#seksi_hide').hide();
 			$('#bidang_hide').hide();
 			$('#pangkat_hide').show();
