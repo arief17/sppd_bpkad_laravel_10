@@ -170,7 +170,7 @@
                         <table style="width: 100%; margin-left: -7px">
                             @foreach ($kwitansi_perdin->pegawais as $index => $pegawai)
                             <tr>
-                                <td>Rp {{ number_format($pegawai->pivot->uang_harian + $pegawai->pivot->uang_transport + $pegawai->pivot->uang_tiket + $pegawai->pivot->uang_penginapan, 0, ',', '.') }}</td>
+                                <td style="white-space: nowrap">Rp {{ number_format($pegawai->pivot->uang_harian + $pegawai->pivot->uang_transport + $pegawai->pivot->uang_tiket + $pegawai->pivot->uang_penginapan, 0, ',', '.') }}</td>
                                 <td style="width: 1%; white-space: nowrap;">{{ $pegawai->nama ?? '-' }}</td>
                                 <td style="text-align: right">..............................</td>
                             </tr>
