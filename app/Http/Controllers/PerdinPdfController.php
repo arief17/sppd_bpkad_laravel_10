@@ -104,6 +104,8 @@ class PerdinPdfController extends Controller
             $total_uang += $pegawai->pivot->uang_harian + $pegawai->pivot->uang_transport + $pegawai->pivot->uang_tiket + $pegawai->pivot->uang_penginapan;
         }
 
+        $total_uang += $kwitansi_perdin->bbm + $kwitansi_perdin->tol;
+
         $imgLogo = base64_encode(file_get_contents(public_path('assets/img/logo-banten2.png')));
 
         $pdf = Pdf::loadView('dashboard.perdin.pdf-perdin.lap_bendahara', [

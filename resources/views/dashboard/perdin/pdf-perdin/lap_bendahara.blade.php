@@ -102,7 +102,7 @@
                             @if ($kwitansi_perdin->data_perdin->pa_kpa)
 							<p style="margin-top: 20px;">
 								<span style="padding-right: 50px;">Serang,</span> {{ now()->isoFormat('MMMM YYYY') }} <br>
-                                <p>{{ ($kwitansi_perdin->data_perdin->pa_kpa->jenis_ttd == 'pengguna_anggaran') ? 'Pengguna Anggaran' : 'Kuasa Pengguna Anggaran' }}</p>
+                                <p>{{ $kwitansi_perdin->data_perdin->pa_kpa->jenis_ttd_f }}</p>
 							</p>
 							<img src="data:image/png;base64,{{ $kwitansi_perdin->data_perdin->pa_kpa->fileTtdEncoded }}" alt="{{ $kwitansi_perdin->data_perdin->pa_kpa->nama }}" height="70">
 							<p>{{ $kwitansi_perdin->data_perdin->pa_kpa->pegawai->nama }}</p>

@@ -95,7 +95,7 @@ class DataPerdinController extends Controller
         ->values();
     }
 
-    public function apiDataPerdins(Request $request, $status = null, $jabatan_id = null)
+    public function apiDataPerdins($status = null, $jabatan_id = null)
     {
         $queryConditions = [];
 

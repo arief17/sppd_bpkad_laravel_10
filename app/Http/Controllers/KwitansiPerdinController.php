@@ -59,7 +59,6 @@ class KwitansiPerdinController extends Controller
         return view('dashboard.perdin.kwitansi-perdin.edit', [
             'title' => 'Perbarui Kwitansi Perdin',
             'kwitansi_perdin' => $kwitansiPerdin,
-            'pptks' => Pegawai::where('pptk', '1')->get(),
             'kegiatan_subs' => KegiatanSub::all(),
         ]);
     }
@@ -78,7 +77,8 @@ class KwitansiPerdinController extends Controller
                 'tgl_bayar' => 'nullable|date',
                 'no_rek' => 'required',
                 'kegiatan_sub_id' => 'required',
-                'pptk_id' => 'required',
+                'bbm' => 'nullable|integer',
+                'tol' => 'nullable|integer',
             ]);
 
             $validatedData['author_id'] = auth()->user()->id;

@@ -103,13 +103,33 @@
             <tr>
                 <th>2</th>
                 <td colspan="3"><b>Uang Transportasi</b></td>
-                <td>Rp <span style="text-align: right;">{{ number_format($kwitansi_perdin->pegawais->sum('pivot.uang_transport') + $kwitansi_perdin->pegawais->sum('pivot.uang_tiket'), 0, ',', '.') }}</span></td>
+                <td>Rp <span style="text-align: right;">{{ number_format($kwitansi_perdin->pegawais->sum('pivot.uang_transport') + $kwitansi_perdin->pegawais->sum('pivot.uang_tiket') + $kwitansi_perdin->bbm + $kwitansi_perdin->tol, 0, ',', '.') }}</span></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2" style="border-right: 0">BBM</td>
+                <td style="border-left: 0">Rp <span style="text-align: right;">{{ number_format($kwitansi_perdin->bbm, 0, ',', '.') }}</span></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2" style="border-right: 0">TOL</td>
+                <td style="border-left: 0">Rp <span style="text-align: right;">{{ number_format($kwitansi_perdin->tol, 0, ',', '.') }}</span></td>
+                <td></td>
                 <td></td>
             </tr>
             <tr>
                 <th>3</th>
                 <td colspan="3"><b>Uang Penginapan</b></td>
                 <td>Rp <span style="text-align: right;">{{ number_format($kwitansi_perdin->pegawais->sum('pivot.uang_transport'), 0, ',', '.') }}</span></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="3">Penginapan</td>
+                <td></td>
                 <td></td>
             </tr>
             <tr>
@@ -134,7 +154,7 @@
                     <td>Telah Menerima jumlah uang sebesar</td>
                 </tr>
                 <tr>
-                    <td>
+                    <td style="font-weight: bold">
                         Rp {{ number_format($kwitansi_perdin->pegawais->sum(function($pegawai) {
                             return $pegawai->pivot->uang_harian +
                                     $pegawai->pivot->uang_transport +
@@ -145,13 +165,13 @@
                     <td>Yang Menerima</td>
                 </tr>
                 <tr>
-                    <td style="text-align: center">Bendahara Pengeluaran</td>
+                    <td style="text-align: center">Bendahara Pengeluaran Pembantu</td>
                     <td rowspan="4" style="text-align: center">
                         <table style="width: 100%; margin-left: -7px">
                             @foreach ($kwitansi_perdin->pegawais as $index => $pegawai)
                             <tr>
-                                <td><b>Rp {{ number_format($pegawai->pivot->uang_harian + $pegawai->pivot->uang_transport + $pegawai->pivot->uang_tiket + $pegawai->pivot->uang_penginapan, 0, ',', '.') }}</b></td>
-                                <td style="width: 1%; white-space: nowrap;"><b>{{ $pegawai->nama ?? '-' }}</b></td>
+                                <td>Rp {{ number_format($pegawai->pivot->uang_harian + $pegawai->pivot->uang_transport + $pegawai->pivot->uang_tiket + $pegawai->pivot->uang_penginapan, 0, ',', '.') }}</td>
+                                <td style="width: 1%; white-space: nowrap;">{{ $pegawai->nama ?? '-' }}</td>
                                 <td style="text-align: right">..............................</td>
                             </tr>
                             <tr><td colspan="3">&nbsp;</td></tr>

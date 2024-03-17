@@ -16,7 +16,7 @@
         }
 
         p, td, th {
-            font-size: 16px;
+            font-size: 14px;
         }
 
         .table-border {
@@ -124,7 +124,11 @@
                     <td style="text-align: center">{{ $loop->iteration }}</td>
                     <td>{{ $index == 0 ? $kwitansi_perdin->no_rek : '' }}</td>
                     <td>{{ $pegawai->nama ?? '-' }}</td>
-                    <td style="text-align: right">-</td>
+                    @if ($index == 0)
+                    <td rowspan="{{ count($kwitansi_perdin->pegawais) }}">
+                        {{ $kwitansi_perdin->data_perdin->maksud }} di {{ $kwitansi_perdin->data_perdin->kabupaten->nama }} {{ $kwitansi_perdin->data_perdin->kabupaten_lain ? 'dan ' . $kwitansi_perdin->data_perdin->kabupaten_lain->nama : '' }} Tgl {{ Carbon\Carbon::parse($kwitansi_perdin->data_perdin->tgl_berangkat)->isoFormat('D MMMM YYYY') }}, Sesuai SPT No: {{ $kwitansi_perdin->data_perdin->no_spt }}
+                    </td>
+                    @endif
                     <td style="text-align: right">{{ number_format($pegawai->pivot->uang_harian + $pegawai->pivot->uang_transport + $pegawai->pivot->uang_tiket + $pegawai->pivot->uang_penginapan, 0, ',', '.') }}</td>
                     <td style="text-align: right">-</td>
                     <td style="text-align: right">-</td>
@@ -170,7 +174,7 @@
                             @if ($kwitansi_perdin->data_perdin->pa_kpa)
 							<p style="margin-top: 20px;">
 								<span style="padding-right: 50px;">Serang,</span> {{ now()->isoFormat('MMMM YYYY') }} <br>
-                                {{ ($kwitansi_perdin->data_perdin->pa_kpa->jenis_ttd == 'pengguna_anggaran') ? 'Pengguna Anggaran' : 'Kuasa Pengguna Anggaran' }}
+                                {{ $kwitansi_perdin->data_perdin->pa_kpa->jenis_ttd_f }}
 							</p>
 							<img src="data:image/png;base64,{{ $kwitansi_perdin->data_perdin->pa_kpa->fileTtdEncoded }}" alt="{{ $kwitansi_perdin->data_perdin->pa_kpa->nama }}" height="70">
 							<p>{{ $kwitansi_perdin->data_perdin->pa_kpa->pegawai->nama }}</p>

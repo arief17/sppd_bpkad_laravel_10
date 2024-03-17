@@ -46,23 +46,9 @@
 									</div>
 									@enderror
 								</td>
-								<th style="white-space: nowrap; width: 15%">PPTK:</th>
+								<th style="white-space: nowrap; width: 15%">&nbsp;</th>
 								<td style="width:35%">
-									<div class="form-group">
-										<select name="pptk_id" id="pptk_id" class="form-control form-select select2 @error('pptk_id') is-invalid @enderror">
-											<option value="">Pilih PPTK</option>
-											@foreach ($pptks as $pptk)
-											<option value="{{ $pptk->id }}" @selected(old('pptk_id', $kwitansi_perdin->pptk_id) == $pptk->id)>
-												{{ $pptk->nama }}
-											</option>
-											@endforeach
-										</select>
-										@error('pptk_id')
-										<div class="invalid-feedback">
-											{{ $message }}
-										</div>
-										@enderror
-									</div>
+									&nbsp;
 								</td>
 							</tr>
 							<tr>
@@ -166,6 +152,31 @@
 								</tr>
 							</tfoot>
 						</table>
+					</div>
+
+					<div class="row row-sm p-3">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="bbm">BBM</label>
+								<input name="bbm" value="{{ old('bbm', $kwitansi_perdin->bbm) }}" type="text" class="form-control @error('bbm') is-invalid @enderror" id="bbm" placeholder="Masukan bbm">
+								@error('bbm')
+								<div class="invalid-feedback">
+									{{ $message }}
+								</div>
+								@enderror
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="tol">TOL</label>
+								<input name="tol" value="{{ old('tol', $kwitansi_perdin->tol) }}" type="text" class="form-control @error('tol') is-invalid @enderror" id="tol" placeholder="Masukan tol">
+								@error('tol')
+								<div class="invalid-feedback">
+									{{ $message }}
+								</div>
+								@enderror
+							</div>
+						</div>
 					</div>
 
 					<div class="d-flex justify-content-between mb-0 mt-3">
