@@ -82,7 +82,7 @@
 									<option value="">Pilih Pejabat</option>
 									@foreach ($ttd_pemberi_perintahs as $ttd_pemberi_perintah)
 									<option value="{{ $ttd_pemberi_perintah->id }}" @selected(old('tanda_tangan_id') == $ttd_pemberi_perintah->id)>
-										{{ $ttd_pemberi_perintah->pegawai->jabatan->nama }}
+										{{ $ttd_pemberi_perintah->pegawai->nama }}
 									</option>
 									@endforeach
 								</select>
