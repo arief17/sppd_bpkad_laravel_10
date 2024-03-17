@@ -11,7 +11,11 @@
             vertical-align: top;
         }
 
-        p, td {
+        th {
+            padding: 1px 7px 1px 7px;
+        }
+
+        p, td, th {
             font-size: 16px;
         }
 
@@ -60,37 +64,37 @@
 
         <table style="margin-bottom: 20px;">
             <tr>
-                <td>1</td>
+                <td style="width: 1%">1.</td>
                 <td>Nama OPD</td>
                 <td style="width: 1%;">:</td>
-                <td>Badan Pengelolaan Keuangan dan Aset Daerah Provinsi Banten</td>
+                <td style="width: 75%">Badan Pengelolaan Keuangan dan Aset Daerah Provinsi Banten</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td>2.</td>
                 <td>Kode Stalker</td>
                 <td>:</td>
                 <td>{{ $kwitansi_perdin->no_rek }}</td>
             </tr>
             <tr>
-                <td>3</td>
+                <td>3.</td>
                 <td>No. DPA & Tgl</td>
                 <td>:</td>
                 <td>DPA/A.1/5.02.0.00.0.00.02.0000/001/2024// tanggal {{ $kwitansi_perdin->tgl_bayar }}</td>
             </tr>
             <tr>
-                <td>4</td>
+                <td>4.</td>
                 <td>Kegiatan</td>
                 <td>:</td>
                 <td>{{ $kwitansi_perdin->kegiatan_sub->kegiatan->nama }}</td>
             </tr>
             <tr>
-                <td>5</td>
+                <td>5.</td>
                 <td>Sub Kegiatan</td>
                 <td>:</td>
                 <td>{{ $kwitansi_perdin->kegiatan_sub->nama }}</td>
             </tr>
             <tr>
-                <td>6</td>
+                <td>6.</td>
                 <td>Jenis Belanja</td>
                 <td>:</td>
                 <td>{{ $kwitansi_perdin->data_perdin->jenis_perdin->nama }}</td>
@@ -98,13 +102,13 @@
         </table>
 
         <p style="margin-bottom: 20px;">
-            Yang bertandatangan dibawah ini {{ $kwitansi_perdin->data_perdin->tanda_tangan->pegawai->jabatan->nama }} Badan Pengelolaan Keuangan dan Aset Daerah Provinsi Banten, menyatakan bahwa saya bertanggungjawab penuh atas segala pengeluaran yang dibayarkan kepada yang berhak menerima dengan perincian sebagai berikut:
+            Yang bertandatangan dibawah ini <span style="text-transform: capitalize"></span>{{ strtolower($kwitansi_perdin->data_perdin->tanda_tangan->pegawai->jabatan->nama) }} Badan Pengelolaan Keuangan dan Aset Daerah Provinsi Banten, menyatakan bahwa saya bertanggungjawab penuh atas segala pengeluaran yang dibayarkan kepada yang berhak menerima dengan perincian sebagai berikut:
         </p>
 
         <table class="table-border">
             <tr>
                 <th rowspan="2">No.</th>
-                <th rowspan="2">No. Rincian Objek</th>
+                <th rowspan="2">No. Rincian <br> Objek</th>
                 <th rowspan="2">Penerima</th>
                 <th rowspan="2">Uraian</th>
                 <th rowspan="2">JUMLAH</th>
@@ -117,19 +121,19 @@
             </tr>
             @foreach ($kwitansi_perdin->pegawais as $index => $pegawai)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <td style="text-align: center">{{ $loop->iteration }}</td>
                     <td>{{ $index == 0 ? $kwitansi_perdin->no_rek : '' }}</td>
                     <td>{{ $pegawai->nama ?? '-' }}</td>
-                    <td>-</td>
-                    <td>{{ number_format($pegawai->pivot->uang_harian + $pegawai->pivot->uang_transport + $pegawai->pivot->uang_tiket + $pegawai->pivot->uang_penginapan, 0, ',', '.') }}</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>{{ number_format($pegawai->pivot->uang_harian + $pegawai->pivot->uang_transport + $pegawai->pivot->uang_tiket + $pegawai->pivot->uang_penginapan, 0, ',', '.') }}</td>
+                    <td style="text-align: right">-</td>
+                    <td style="text-align: right">{{ number_format($pegawai->pivot->uang_harian + $pegawai->pivot->uang_transport + $pegawai->pivot->uang_tiket + $pegawai->pivot->uang_penginapan, 0, ',', '.') }}</td>
+                    <td style="text-align: right">-</td>
+                    <td style="text-align: right">-</td>
+                    <td style="text-align: right">{{ number_format($pegawai->pivot->uang_harian + $pegawai->pivot->uang_transport + $pegawai->pivot->uang_tiket + $pegawai->pivot->uang_penginapan, 0, ',', '.') }}</td>
                 </tr>
             @endforeach
             <tr>
                 <th colspan="4">Jumlah</th>
-                <th>
+                <th style="text-align: right">
                     {{ number_format($kwitansi_perdin->pegawais->sum(function($pegawai) {
                         return $pegawai->pivot->uang_harian +
                                 $pegawai->pivot->uang_transport +
@@ -137,9 +141,9 @@
                                 $pegawai->pivot->uang_penginapan;
                     }), 0, ',', '.') }}
                 </th>
-                <th>-</th>
-                <th>-</th>
-                <th>
+                <th style="text-align: right">-</th>
+                <th style="text-align: right">-</th>
+                <th style="text-align: right">
                     {{ number_format($kwitansi_perdin->pegawais->sum(function($pegawai) {
                         return $pegawai->pivot->uang_harian +
                                 $pegawai->pivot->uang_transport +
@@ -150,7 +154,7 @@
             </tr>
         </table>
 
-        <p style="margin-bottom: 20px;">
+        <p style="margin-bottom: 20px; margin-top: 20px">
             Bukti - bukti pengeluaran yang sah dan lengkap tersebut diatas disimpan sesuai ketentuan yang berlaku  pada Badan Pengelolaan Keuangan dan Aset Daerah Provinsi Banten untuk kelengkapan administrasi dan keperluan pemeriksaan aparat pengawas fungsional.
         </p>
         <p style="margin-bottom: 20px;">
@@ -165,12 +169,11 @@
 						<div style="display: inline-block; text-align: center;">
                             @if ($kwitansi_perdin->data_perdin->pa_kpa)
 							<p style="margin-top: 20px;">
-								<span style="padding-right: 100px;">Serang,</span> {{ now()->isoFormat('YYYY') }} <br>
+								<span style="padding-right: 50px;">Serang,</span> {{ now()->isoFormat('MMMM YYYY') }} <br>
                                 {{ ($kwitansi_perdin->data_perdin->pa_kpa->jenis_ttd == 'pengguna_anggaran') ? 'Pengguna Anggaran' : 'Kuasa Pengguna Anggaran' }}
 							</p>
 							<img src="data:image/png;base64,{{ $kwitansi_perdin->data_perdin->pa_kpa->fileTtdEncoded }}" alt="{{ $kwitansi_perdin->data_perdin->pa_kpa->nama }}" height="70">
 							<p>{{ $kwitansi_perdin->data_perdin->pa_kpa->pegawai->nama }}</p>
-                            <p>{{ $kwitansi_perdin->data_perdin->pa_kpa->pegawai->pangkat->nama ?? '' }}</p>
 							<p>NIP {{ $kwitansi_perdin->data_perdin->pa_kpa->pegawai->nip }}</p>
                             @endif
 						</div>

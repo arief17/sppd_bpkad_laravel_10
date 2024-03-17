@@ -318,11 +318,11 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<p>Sekretaris</p>
+							<p>Kepala Badan</p>
 
-							<img src="data:image/png;base64,{{ $ttd_sekret->fileTtdEncoded ?? $ttd_sekret }}" alt="{{ $ttd_sekret->nama ?? '' }}" height="60">
-							<p>{{ $ttd_sekret->pegawai->nama ?? '' }}</p>
-							<p>NIP {{ $ttd_sekret->pegawai->nip ?? '' }}</p>
+							<img src="data:image/png;base64,{{ $ttd_kepala->fileTtdEncoded ?? $ttd_kepala }}" alt="{{ $ttd_kepala->nama ?? '' }}" height="60">
+							<p>{{ $ttd_kepala->pegawai->nama ?? '' }}</p>
+							<p>NIP {{ $ttd_kepala->pegawai->nip ?? '' }}</p>
 						</td>
 					</tr>
 				</table>
