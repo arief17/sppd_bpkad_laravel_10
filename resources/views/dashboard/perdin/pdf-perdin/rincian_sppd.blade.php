@@ -141,7 +141,7 @@
                                 $pegawai->pivot->uang_transport +
                                 $pegawai->pivot->uang_tiket +
                                 $pegawai->pivot->uang_penginapan;
-                    }), 0, ',', '.') }}
+                    }) + $kwitansi_perdin->bbm + $kwitansi_perdin->tol, 0, ',', '.') }}
                 </td>
                 <td></td>
             </tr>
@@ -160,7 +160,7 @@
                                     $pegawai->pivot->uang_transport +
                                     $pegawai->pivot->uang_tiket +
                                     $pegawai->pivot->uang_penginapan;
-                        }), 0, ',', '.') }}
+                        }) + $kwitansi_perdin->bbm + $kwitansi_perdin->tol, 0, ',', '.') }}
                     </td>
                     <td>Yang Menerima</td>
                 </tr>
@@ -201,12 +201,26 @@
                 <tr>
                     <td>Ditetapkan sejumlah</td>
                     <td style="text-align: right;">Rp</td>
-                    <td style="text-align: right;">{{ number_format($pegawai->pivot->uang_harian + $pegawai->pivot->uang_transport + $pegawai->pivot->uang_tiket + $pegawai->pivot->uang_penginapan, 0, ',', '.') }}</td>
+                    <td style="text-align: right;">
+                        {{ number_format($kwitansi_perdin->pegawais->sum(function($pegawai) {
+                            return $pegawai->pivot->uang_harian +
+                                    $pegawai->pivot->uang_transport +
+                                    $pegawai->pivot->uang_tiket +
+                                    $pegawai->pivot->uang_penginapan;
+                        }) + $kwitansi_perdin->bbm + $kwitansi_perdin->tol, 0, ',', '.') }}
+                    </td>
                 </tr>
                 <tr>
                     <td>Yang telah dibayar semua</td>
                     <td style="text-align: right;">Rp</td>
-                    <td style="text-align: right;">{{ number_format($pegawai->pivot->uang_harian + $pegawai->pivot->uang_transport + $pegawai->pivot->uang_tiket + $pegawai->pivot->uang_penginapan, 0, ',', '.') }}</td>
+                    <td style="text-align: right;">
+                        {{ number_format($kwitansi_perdin->pegawais->sum(function($pegawai) {
+                            return $pegawai->pivot->uang_harian +
+                                    $pegawai->pivot->uang_transport +
+                                    $pegawai->pivot->uang_tiket +
+                                    $pegawai->pivot->uang_penginapan;
+                        }) + $kwitansi_perdin->bbm + $kwitansi_perdin->tol, 0, ',', '.') }}
+                    </td>
                 </tr>
                 <tr>
                     <td>Sisa kurang/lebih</td>
