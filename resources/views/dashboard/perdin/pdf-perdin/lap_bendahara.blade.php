@@ -68,7 +68,7 @@
         </table>
         <table style="margin-bottom: 20px;">
             <tr>
-                <td>Dengan Huruf</td>
+                <td style="white-space: nowrap">Dengan Huruf</td>
                 <td>:</td>
                 <td>{{ ucwords($kwitansi_perdin->terbilang($total_uang)) }} Rupiah</td>
             </tr>

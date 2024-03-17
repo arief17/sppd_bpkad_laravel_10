@@ -68,7 +68,7 @@
             <tr>
                 <td>Lampiran SPPD</td>
                 <td style="width: 1%;">:</td>
-                <td><span style="padding-left: 150px;">2024</span></td>
+                <td>{{ $kwitansi_perdin->data_perdin->no_spt }}</td>
             </tr>
             <tr>
                 <td>Tanggal</td>
