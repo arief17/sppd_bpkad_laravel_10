@@ -318,7 +318,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<p>Kepala Badan Pengelolaan Keuangan Dan Aset Daerah</p>
+							<p>Kepala Badan <br> Pengelolaan Keuangan Dan Aset Daerah</p>
 
 							<img src="data:image/png;base64,{{ $ttd_kepala->fileTtdEncoded ?? $ttd_kepala }}" alt="{{ $ttd_kepala->nama ?? '' }}" height="60">
 							<p>{{ $ttd_kepala->pegawai->nama ?? '' }}</p>
