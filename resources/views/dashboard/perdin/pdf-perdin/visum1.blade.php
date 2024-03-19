@@ -74,7 +74,7 @@
 					<td style="text-align: center; width: 1%">1</td>
 					<td colspan="2">Pengguna Anggaran/Kuasa Pengguna Anggaran</td>
 					<td style="border-right: 0;"></td>
-					<td colspan="2" style="border-left: 0; text-transform: capitalize;">{{ strtolower($data_perdin->tanda_tangan->pegawai->jabatan->nama) }}</td>
+					<td colspan="2" style="border-left: 0; text-transform: capitalize;">{{ ($data_perdin->pa_kpa->jenis_ttd == 'pengguna_anggaran') ? 'Pengguna Anggaran' : 'Kuasa Pengguna Anggaran' }}</td>
 				</tr>
 				<tr>
 					<td style="text-align: center; width: 1%">2</td>
