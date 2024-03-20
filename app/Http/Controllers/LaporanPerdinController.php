@@ -74,7 +74,7 @@ class LaporanPerdinController extends Controller
             $validatedData = $request->validate([
                 'tgl_laporan' => 'required|date',
                 'no_spt' => 'required',
-                'latar_belakang' => 'required',
+                // 'latar_belakang' => 'required',
                 'maksud' => 'required',
                 'kegiatan' => 'required',
                 'hasil' => 'required',

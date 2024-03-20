@@ -64,7 +64,7 @@
 					<tr>
 						<td rowspan="5" style="text-align: center; width: 1%;"></td>
 						<td style="white-space: nowrap; width: 1%;">Tiba di</td>
-						<td>: {{ $data_perdin->tujuan->nama }}</td>
+						<td>: {{ $data_perdin->kabupaten->nama ?? '' }}</td>
 					</tr>
 					<tr>
 						<td style="white-space: nowrap; width: 1%;">Pada Tanggal</td>
@@ -92,7 +92,7 @@
 					<tr>
 						<td rowspan="5" style="text-align: center; width: 1%;"></td>
 						<td style="white-space: nowrap; width: 1%;">Berangkat dari</td>
-						<td>: {{ $data_perdin->tujuan->nama }}</td>
+						<td>: {{ $data_perdin->kabupaten->nama ?? '' }}</td>
 					</tr>
 					<tr>
 						<td style="white-space: nowrap; width: 1%;">Ke</td>
@@ -124,11 +124,11 @@
 					<tr>
 						<td rowspan="5" style="text-align: center; width: 1%;"></td>
 						<td style="white-space: nowrap; width: 1%;">Tiba di</td>
-						<td>: </td>
+						<td>: {{ $data_perdin->kabupaten_lain->nama ?? '' }}</td>
 					</tr>
 					<tr>
 						<td style="white-space: nowrap; width: 1%;">Pada Tanggal</td>
-						<td>: </td>
+						<td>:</td>
 					</tr>
 					<tr>
 						<td>Kepada</td>
@@ -153,15 +153,15 @@
 					<tr>
 						<td rowspan="5" style="text-align: center; width: 1%;"></td>
 						<td style="white-space: nowrap; width: 1%;">Berangkat dari</td>
-						<td>: </td>
+						<td>:</td>
 					</tr>
 					<tr>
 						<td style="white-space: nowrap; width: 1%;">Ke</td>
-						<td>: </td>
+						<td>:</td>
 					</tr>
 					<tr>
 						<td style="white-space: nowrap; width: 1%;">Pada Tanggal</td>
-						<td>: </td>
+						<td>:</td>
 					</tr>
 					<tr>
 						<td>Kepada</td>
@@ -318,11 +318,12 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<p>Kepala Badan <br> Pengelolaan Keuangan Dan Aset Daerah</p>
+							<b style="text-transform: capitalize">{{ strtolower($data_perdin->tanda_tangan->pegawai->jabatan->nama) }}</b>
 
-							<img src="data:image/png;base64,{{ $ttd_kepala->fileTtdEncoded ?? $ttd_kepala }}" alt="{{ $ttd_kepala->nama ?? '' }}" height="60">
-							<p>{{ $ttd_kepala->pegawai->nama ?? '' }}</p>
-							<p>NIP {{ $ttd_kepala->pegawai->nip ?? '' }}</p>
+							<img src="data:image/png;base64,{{ $data_perdin->tanda_tangan->fileTtdEncoded }}" alt="{{ $data_perdin->tanda_tangan->nama }}" height="70">
+							<p style="font-weight: bold">{{ $data_perdin->tanda_tangan->pegawai->nama }}</p>
+                            <p>{{ $data_perdin->tanda_tangan->pegawai->pangkat->nama ?? '' }}</p>
+							<p>NIP {{ $data_perdin->tanda_tangan->pegawai->nip }}</p>
 						</td>
 					</tr>
 				</table>

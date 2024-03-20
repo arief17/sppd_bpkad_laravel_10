@@ -56,6 +56,7 @@
             <tr>
                 <td>Dasar</td>
                 <td>:</td>
+				<td>-</td>
                 <td colspan="3">
 					@if ($data_perdin->surat_dari)
 					<span>
@@ -65,6 +66,13 @@
                         {{-- dalam {{ $data_perdin->kwitansi_perdin->kegiatan_sub ? 'Kegiatan ' . strtolower($data_perdin->kwitansi_perdin->kegiatan_sub->kegiatan->nama) . ' Sub Kegiatan ' . strtolower($data_perdin->kwitansi_perdin->kegiatan_sub->nama) : '' }},&nbsp; --}}
 					</span>
 					@endif
+				</td>
+            </tr>
+			<tr>
+                <td></td>
+                <td></td>
+				<td>-</td>
+                <td colspan="3">
                     Dokumen Pelaksanaan Anggaran Satuan Kerja Perangkat Daerah (DPA-SKPD) Badan Pengelolaan Keuangan dan Aset Daerah Provinsi Banten Tahun Anggaran 2024.
 				</td>
             </tr>

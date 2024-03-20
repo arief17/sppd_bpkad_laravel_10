@@ -50,7 +50,7 @@
 				<td style="vertical-align: top; width: 1%; font-weight: bold;">I.</td>
 				<td colspan="3" style="font-weight: bold;">Pendahuluan</td>
 			</tr>
-			<tr>
+			{{-- <tr>
                 <td></td>
 				<td style="width: 1%; font-weight: bold;">A. </td>
 				<td colspan="2" style="font-weight: bold;">Latar Belakang</td>
@@ -61,11 +61,11 @@
 				<td colspan="2" style="text-align: justify">
 					{!! nl2br($laporan_perdin->latar_belakang) ?? '' !!}
 				</td>
-			</tr>
+			</tr> --}}
 			<tr>
                 <td></td>
-				<td style="width: 1%; font-weight: bold;">B. </td>
-				<td colspan="2" style="font-weight: bold;">Dasar Perjalanan Dinas</td>
+				<td style="width: 1%; font-weight: bold;">A. </td>
+				<td colspan="2" style="font-weight: bold;">Dasar Hukum Perjalanan Dinas</td>
 			</tr>
             <tr>
                 <td></td>
@@ -80,7 +80,7 @@
 			</tr>
 			<tr>
                 <td></td>
-				<td style="width: 1%; font-weight: bold;">C. </td>
+				<td style="width: 1%; font-weight: bold;">B. </td>
 				<td colspan="2" style="font-weight: bold;">Maksud dan Tujuan</td>
 			</tr>
 			<tr>

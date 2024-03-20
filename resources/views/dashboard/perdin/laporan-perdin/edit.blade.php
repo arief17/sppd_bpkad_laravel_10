@@ -43,7 +43,7 @@
 									</tr>
 									@endif
 									<tr>
-										<td colspan="2" class="fw-bold">A. Dasar Perjalanan Dinas</td>
+										<td colspan="2" class="fw-bold">A. Dasar Hukum Perjalanan Dinas</td>
 									</tr>
 									<tr>
 										<td class="align-middle">Nomor SPT</td>
@@ -71,11 +71,26 @@
 											@enderror
 										</td>
 									</tr>
+									
+									<tr>
+										<td colspan="2" class="fw-bold">B. Maksud dan Tujuan</td>
+									</tr>
+									<tr>
+										<td class="align-middle">Maksud dan Tujuan</td>
+										<td>
+											<textarea name="maksud" class="form-control @error('maksud') is-invalid @enderror" rows="3">{{ old('maksud', $laporan_perdin->maksud) }}</textarea>
+											@error('maksud')
+											<div class="invalid-feedback">
+												{{ $message }}
+											</div>
+											@enderror
+										</td>
+									</tr>
 									<tr><td></td><td></td></tr>
 								</table>
 							</div>
 						</section>
-						<h3>Latar Belakang</h3>
+						{{-- <h3>Latar Belakang</h3>
 						<section>
 							<div class="table-responsive mg-t-20">
 								<table class="table mg-b-0 text-md-nowrap">
@@ -95,8 +110,8 @@
 									<tr><td></td></tr>
 								</table>
 							</div>
-						</section>
-						<h3>Maksud & Tujuan</h3>
+						</section> --}}
+						{{-- <h3>Maksud & Tujuan</h3>
 						<section>
 							<div class="table-responsive mg-t-20">
 								<table class="table mg-b-0 text-md-nowrap">
@@ -116,7 +131,7 @@
 									<tr><td></td></tr>
 								</table>
 							</div>
-						</section>
+						</section> --}}
 						<h3>Kegiatan yang dilaksanakan</h3>
 						<section>
 							<div class="table-responsive mg-t-20">
